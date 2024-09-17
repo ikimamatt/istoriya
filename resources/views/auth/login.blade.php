@@ -4,9 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spike Free</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset("assets/images/logos/favicon.png") }}../" />
-  <link rel="stylesheet" href="{{ asset("assets/css/styles.min.css") }}" />
+  <title>Login</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,33 +22,69 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt="">
+                  <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="90" alt="">
                 </a>
-                <p class="text-center">Your Social Campaigns</p>
-                <form>
+                <h3 class="text-center text-bold">Istoriya Cafe Admin</h3>
+                <form action="{{ route('login') }}" method="POST">
+                  @csrf
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1"
+                      name="email" aria-describedby="emailHelp" value="{{ old('email') }}" required>
+                    @error('email')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                    @enderror
                   </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
-                      </label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                      id="exampleInputPassword1" name="password" required>
+                    @error('password')
+                    <div class="invalid-feedback">
+                      {{ $message }}
                     </div>
-                    <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
+                    @enderror
                   </div>
-                  <a href="./index.html" class="btn btn-primary w-100 fs-4 mb-4 rounded-2">Sign In</a>
-                  <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-bold">New to Spike?</p>
-                    <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a>
-                  </div>
+
+                  <!-- SweetAlert untuk error login -->
+                  @if ($errors->has('login'))
+                    <script>
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: '{{ $errors->first('login') }}',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Try Again'
+                      });
+                    </script>
+                  @endif
+                  <button type="submit" class="btn btn-primary w-100 fs-4 mb-4 rounded-2">Sign In</button>
                 </form>
+
+                <!-- SweetAlert untuk validasi error lainnya (email/password kosong atau format salah) -->
+                <script>
+                  @if ($errors->has('email'))
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: '{{ $errors->first('email') }}',
+                      confirmButtonColor: '#3085d6',
+                      confirmButtonText: 'Try Again'
+                    });
+                  @endif
+
+                  @if ($errors->has('password'))
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: '{{ $errors->first('password') }}',
+                      confirmButtonColor: '#3085d6',
+                      confirmButtonText: 'Try Again'
+                    });
+                  @endif
+                </script>
               </div>
             </div>
           </div>
@@ -55,8 +92,8 @@
       </div>
     </div>
   </div>
-  <script src="{{ asset("assets/libs/jquery/dist/jquery.min.js") }}"></script>
-  <script src="{{ asset("assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+  <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
