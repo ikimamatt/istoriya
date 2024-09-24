@@ -17,14 +17,17 @@
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div class="scroll-sidebar" data-simplebar>
-        <div class="d-flex mb-4 align-items-center justify-content-between">
-            <a href="index.html" class="text-nowrap logo-img ms-0 ms-md-1">
-              <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt="">
+        <div class="d-flex mb-4 align-items-center mr-4">
+            <a href="index.html" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
+                <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="30" alt="Logo">
+                <h2 class="ms-3 mb-0 text-bold">Istoria Caffe</h2>
+                {{-- <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt=""> --}}
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-              <i class="ti ti-x fs-8"></i>
+                <i class="ti ti-x fs-8"></i>
             </div>
         </div>
+        
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
           <ul id="sidebarnav" class="mb-4 pb-2">
@@ -46,7 +49,7 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">UI Componenst</span>
+              <span class="hide-menu">CRUD</span>
             </li>
             <li class="sidebar-item">
               <a
@@ -57,7 +60,7 @@
                 <span class="aside-icon p-2 bg-light-warning rounded-3">
                   <i class="ti ti-article fs-7 text-warning"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Buttons</span>
+                <span class="hide-menu ms-2 ps-1">Company Profile</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -69,22 +72,22 @@
                 <span class="aside-icon p-2 bg-light-danger rounded-3">
                   <i class="ti ti-alert-circle fs-7 text-danger"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Alerts</span>
+                <span class="hide-menu ms-2 ps-1">Product</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link success-hover-bg"
-                href="./ui-card.html"
+                href="{{ route("admin.ordering") }}"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-success rounded-3">
                   <i class="ti ti-cards fs-7 text-success"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Card</span>
+                <span class="hide-menu ms-2 ps-1">Ordering</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
                 href="./ui-forms.html"
@@ -107,8 +110,8 @@
                 </span>
                 <span class="hide-menu ms-2 ps-1">Typography</span>
               </a>
-            </li>
-            <li class="nav-small-cap">
+            </li> --}}
+            {{-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
               <span class="hide-menu">Auth</span>
             </li>
@@ -135,12 +138,12 @@
                 </span>
                 <span class="hide-menu ms-2 ps-1">Register</span>
               </a>
-            </li>
-            <li class="nav-small-cap">
+            </li> --}}
+            {{-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
               <span class="hide-menu">Extra</span>
-            </li>
-            <li class="sidebar-item">
+            </li> --}}
+            {{-- <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link success-hover-bg"
                 href="./icon-tabler.html"
@@ -151,8 +154,8 @@
                 </span>
                 <span class="hide-menu ms-2 ps-1">Icons</span>
               </a>
-            </li>
-            <li class="sidebar-item">
+            </li> --}}
+            {{-- <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
                 href="./sample-page.html"
@@ -163,61 +166,9 @@
                 </span>
                 <span class="hide-menu ms-2 ps-1">Sample Page</span>
               </a>
-            </li>
+            </li> --}}
           </ul>
-          <div class="pb-3 options text-nowrap">
-            <div class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">More options</span>
-            </div>
-
-            <ul class="sidebar-list">
-              <li class="sidebar-list-item">
-                <i class="ti ti-circle text-primary fs-4"></i>
-                <span class="hide-menu ms-2">Applications</span>
-              </li>
-              <li class="sidebar-list-item">
-                <i class="ti ti-circle text-danger fs-4"></i>
-                <span class="hide-menu ms-2">Form Options</span>
-              </li>
-              <li class="sidebar-list-item">
-                <i class="ti ti-circle text-warning fs-4"></i>
-                <span class="hide-menu ms-2">Table Variations</span>
-              </li>
-              <li class="sidebar-list-item">
-                <i class="ti ti-circle text-success fs-4"></i>
-                <span class="hide-menu ms-2">Charts Selection</span>
-              </li>
-              <li class="sidebar-list-item">
-                <i class="ti ti-circle text-indigo fs-4"></i>
-                <span class="hide-menu ms-2">Widgets</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-5 blocks-card sidebar-ad">
-            <div class="card bg-light-primary">
-              <div class="card-body">
-                <div class="text-center">
-                  <img
-                    src="{{ asset("assets/images/backgrounds/education-blocks.png") }}"
-                    width="136"
-                    height="136"
-                    class="mt-n9"
-                    alt=""
-                  />
-
-                  <h5>Are you<br/> satisfied ?</h5>
-
-                  <div class="mt-4">
-                    <a href="" target="_blank" class="btn btn-primary buynow-link w-100 px-2">
-                      Buy Now
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </nav>
         <!-- End Sidebar navigation -->
       </div>
@@ -244,7 +195,6 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="https://adminmart.com/product/Spike-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -252,19 +202,19 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    {{-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    </a> --}}
+                    {{-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-mail fs-6"></i>
                       <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    </a> --}}
+                    {{-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none">Logout</a>
+                    </a> --}}
+                    <a href="{{ route('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none">Logout</a>
                   </div>
                 </div>
               </li>
