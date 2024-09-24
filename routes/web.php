@@ -22,6 +22,7 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/ordering', [HomeController::class, 'ordering'])->name('ordering');
     // Route::get('/table', [HomeController::class, 'index'])->name('index');
     // Route::post('/store', [HomeController::class, 'store'])->name('store');
     // Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit');
