@@ -25,7 +25,7 @@
                   <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="90" alt="">
                 </a>
                 <h3 class="text-center text-bold">Istoriya Cafe Admin</h3>
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('login_proses') }}" method="POST">
                   @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -48,43 +48,8 @@
                     @enderror
                   </div>
 
-                  <!-- SweetAlert untuk error login -->
-                  @if ($errors->has('login'))
-                    <script>
-                      Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed',
-                        text: '{{ $errors->first('login') }}',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Try Again'
-                      });
-                    </script>
-                  @endif
                   <button type="submit" class="btn btn-primary w-100 fs-4 mb-4 rounded-2">Sign In</button>
                 </form>
-
-                <!-- SweetAlert untuk validasi error lainnya (email/password kosong atau format salah) -->
-                <script>
-                  @if ($errors->has('email'))
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: '{{ $errors->first('email') }}',
-                      confirmButtonColor: '#3085d6',
-                      confirmButtonText: 'Try Again'
-                    });
-                  @endif
-
-                  @if ($errors->has('password'))
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: '{{ $errors->first('password') }}',
-                      confirmButtonColor: '#3085d6',
-                      confirmButtonText: 'Try Again'
-                    });
-                  @endif
-                </script>
               </div>
             </div>
           </div>
@@ -94,6 +59,19 @@
   </div>
   <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if ($message = Session::get('success'))
+<script>
+    Swal.fire('{{ $message }}');
+</script>
+@endif
+@if ($message = Session::get('failed'))
+    <script>
+        Swal.fire('{{ $message }}');
+    </script>
+@endif
+
 </body>
 
 </html>

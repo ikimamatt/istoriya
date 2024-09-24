@@ -4,51 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+
 
 class LoginController extends Controller
 {
-    // Menampilkan form login
-    public function showLoginForm()
-    {
+    public function index(){
         return view('auth.login');
     }
-
-    // Handle login request
-    public function login(Request $request)
-    {
+    public function login_proses(Request $request){
+        // dd($request->all());
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
+    
         ]);
-
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            // Cek apakah user adalah admin atau user
-            if ($user->role == 'admin') {
-                return redirect()->route('admin.dashboard'); // Redirect ke admin dashboard
-            } elseif ($user->role == 'user') {
-                return redirect()->route('user.dashboard'); // Redirect ke user dashboard
-            }
-        }
-
-        // Jika login gagal
-        return back()->withErrors([
-            'login' => 'Email atau password salah.',
-        ])->withInput();
+    
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+    
+        if(Auth::attempt($data)){
+            return redirect()->route('admin.dashboard');
+        }else{
+            return redirect()->route('login')->with('failed','Email atau Passowrd salah');
+        };
     }
-
-    // Handle logout
-    public function logout(Request $request)
-    {
+    
+    public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success','Kamu Berhasil Logout');
     }
 }
-
-
     

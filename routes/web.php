@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_proses',[LoginController::class,'login_proses'])->name('login_proses');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
-// Route::get('/',[LoginController::class,'home'])->name('home');
+route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], function () {
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    // Route::get('/table', [HomeController::class, 'index'])->name('index');
+    // Route::post('/store', [HomeController::class, 'store'])->name('store');
+    // Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit');
+    // Route::delete('/delete/{id}', [HomeController::class, 'delete'])->name('delete');
 
-
-
+});
 
