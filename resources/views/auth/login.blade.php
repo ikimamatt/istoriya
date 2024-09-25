@@ -66,11 +66,21 @@
     Swal.fire('{{ $message }}');
 </script>
 @endif
-@if ($message = Session::get('failed'))
+@if(session()->has('failed'))
+<script>
+    Swal.fire({
+        title: 'Gagal!',
+        text: '{{ $message }}',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
+{{-- @if ($message = Session::get('failed'))
     <script>
         Swal.fire('{{ $message }}');
     </script>
-@endif
+@endif --}}
 
 </body>
 

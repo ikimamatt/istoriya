@@ -12,4 +12,8 @@ class HomeController extends Controller
     public function ordering(){
         return view('admin.ordering');
     }
+
+    public function index(){
+        return view('home');
+    }
 }
