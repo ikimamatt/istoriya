@@ -61,14 +61,27 @@
                     <p class="fs-3 fw-normal mb-0">123456</p>
                   </td>
                 <td>
-                  <p class="fs-3 fw-normal mb-0">$150/hour</p>
+                  <p class="fs-3 fw-normal mb-0">Rienata</p>
                 </td>
                 <td>
+                    <p class="fs-3 fw-normal mb-0">123@gmail.com</p>
+                  </td>
+                <td>
                   <p class="fs-3 fw-normal mb-0 text-success">
-                    +53
+                    +5357675768776
                   </p>
                 </td>
                 <td>
+                    <p class="fs-3 fw-normal mb-0">jl di panjaitan</p>
+                </td>
+                <td>
+                    <p class="fs-3 fw-normal mb-0">caffelatte</p>
+                </td>
+                <td>
+                    <p class="fs-3 fw-normal mb-0">ambil sendiri</p>
+                </td>
+                <td>
+                    
                   <span
                     class="badge bg-light-success rounded-pill text-success px-3 py-2 fs-3"
                     >Available</span

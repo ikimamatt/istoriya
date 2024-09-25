@@ -30,3 +30,5 @@ route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
 
 });
 
+Route::get('/', [HomeController::class, 'index'])->name('index');
+

@@ -20,7 +20,7 @@
         <div class="d-flex mb-4 align-items-center mr-4">
             <a href="index.html" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
                 <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="30" alt="Logo">
-                <h2 class="ms-3 mb-0 text-bold">Istoria Caffe</h2>
+                <h2 class="ms-3 mb-0 text-bold">Istoriya Cafe</h2>
                 {{-- <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt=""> --}}
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -246,6 +246,7 @@
     });
 </script>
 @endif
+
 
 @if(session()->has('error'))
 <script>
