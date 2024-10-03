@@ -32,3 +32,20 @@ route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+Route::get('/shop', function () {
+    return view('shop');
+});
+
+Route::get('/shopping-cart', function () {
+    return view('shopping-cart');
+});
+
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::get('/success', function () {
+    return view('success');
+});
+
+
