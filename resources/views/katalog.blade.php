@@ -60,11 +60,11 @@
 								<a href="index.html">Beranda</a>
 							</li>
 
-							<li>
+							<li class="active-menu">
 								<a href="katalog.blade.php">Katalog Produk</a>
 							</li>
 
-							<li class="active-menu">
+							<li>
 								<a href="product.html">Pesan</a>
 							</li>
 						</ul>
@@ -305,43 +305,19 @@
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Sort By
+								Urutkan Berdasarkan
 							</div>
 
 							<ul>
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										Default
+										Harga
 									</a>
 								</li>
 
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										Popularity
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Average rating
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										Newness
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: Low to High
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										Price: High to Low
+										Nama
 									</a>
 								</li>
 							</ul>
@@ -349,142 +325,34 @@
 
 						<div class="filter-col2 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Price
+								Harga
 							</div>
 
 							<ul>
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All
+										Rp15.000 - Rp30.000
 									</a>
 								</li>
 
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										$0.00 - $50.00
+										Rp30.000 - Rp50.000
 									</a>
 								</li>
 
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										$50.00 - $100.00
+										Rp50.000 - Rp70.000
 									</a>
 								</li>
 
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">
-										$100.00 - $150.00
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$150.00 - $200.00
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">
-										$200.00+
+										> Rp70.000
 									</a>
 								</li>
 							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Black
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										Blue
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Grey
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Green
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										Red
-									</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-
-									<a href="#" class="filter-link stext-106 trans-04">
-										White
-									</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -496,10 +364,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/arenlatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -521,10 +385,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/pandanlatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -546,10 +406,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffeemocktail/sparklingorangecano.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -571,10 +427,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/coconutlatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -596,10 +448,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/cheesecakelatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -621,10 +469,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/thesignature/blinkfleur.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -646,10 +490,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/caramelatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -671,10 +511,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/vanilalatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -696,10 +532,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/milkbased/sakura.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -721,10 +553,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/milkbased/redvelvet.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -746,10 +574,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/milkbased/klepon.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -771,10 +595,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/milkbased/chocolatte.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -796,10 +616,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/milkbased/greentea.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -821,10 +637,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/milkbased/thaitea.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -846,10 +658,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffee/americano.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -871,10 +679,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/coffeemocktail/applemidi.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -896,10 +700,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/fruitteaseries/lycheetea.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -921,10 +721,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/fruitteaseries/peachtea.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -946,10 +742,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/fruitteaseries/appletea.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -971,10 +763,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/artisan.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -995,11 +783,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="assets/images/pastrydessert/artisanchocociz.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
+							<img src="assets/images/pastrydessert/artisanchocociz.png" alt="IMG-PRODUCT">>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1021,10 +805,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/chocomilkbun.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1046,10 +826,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/durianmilkbun.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1071,10 +847,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/milkbun.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1096,10 +868,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/strawberrymilkbun.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1121,10 +889,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/garlic.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1146,10 +910,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/chiffoncake.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1171,10 +931,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/brownies.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1196,10 +952,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/cucumber.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1221,10 +973,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/cucumber.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -1246,10 +994,6 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="assets/images/pastrydessert/cucumber.png" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Order
-							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">

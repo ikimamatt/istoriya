@@ -48,4 +48,8 @@ Route::get('/success', function () {
     return view('success');
 });
 
+Route::get('/katalog', function () {
+    return view('katalog');
+});
+
 
