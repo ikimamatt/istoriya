@@ -23,6 +23,19 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('/ordering', [HomeController::class, 'ordering'])->name('ordering');
+    Route::get('/produk', function () {
+        return view('admin.produk');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('produk');
+
+    Route::get('/addproduk', function () {
+        return view('admin.addproduk');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('addproduk');
+
+    Route::get('/editproduk', function () {
+        return view('admin.editproduk');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('editproduk');
+
+    // Route::get('/produk', [HomeController::class, 'produk'])->name('produk');
     // Route::get('/table', [HomeController::class, 'index'])->name('index');
     // Route::post('/store', [HomeController::class, 'store'])->name('store');
     // Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit');
@@ -52,4 +65,7 @@ Route::get('/katalog', function () {
     return view('katalog');
 });
 
+Route::get('/admin.produk', function () {
+    return view('admin.produk');
+});
 

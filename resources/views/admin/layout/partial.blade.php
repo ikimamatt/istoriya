@@ -7,6 +7,7 @@
   <title>Admin Istoria</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset("assets/images/logos/favicon.png") }}" />
   <link rel="stylesheet" href="{{ asset("assets/css/styles.min.css") }}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
       <div class="scroll-sidebar" data-simplebar>
         <div class="d-flex mb-4 align-items-center mr-4">
             <a href="index.html" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
-                <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="30" alt="Logo">
+                <img src="{{ asset('assets/images/logos/logo1.png') }}" width="30" alt="Logo">
                 <h2 class="ms-3 mb-0 text-bold">Istoriya Cafe</h2>
                 {{-- <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt=""> --}}
             </a>
