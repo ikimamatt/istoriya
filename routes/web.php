@@ -35,6 +35,22 @@ route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
         return view('admin.editproduk');  // Menampilkan halaman produk.blade.php di folder admin
     })->name('editproduk');
 
+    Route::get('/datasales', function () {
+        return view('admin.datasales');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('datasales');
+
+    Route::get('/detailsales', function () {
+        return view('admin.detailsales');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('detailsales');
+
+    Route::get('/readcompro', function () {
+        return view('admin.readcompro');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('readcompro');
+
+    Route::get('/editcompro', function () {
+        return view('admin.editcompro');  // Menampilkan halaman produk.blade.php di folder admin
+    })->name('editcompro');
+
     // Route::get('/produk', [HomeController::class, 'produk'])->name('produk');
     // Route::get('/table', [HomeController::class, 'index'])->name('index');
     // Route::post('/store', [HomeController::class, 'store'])->name('store');
