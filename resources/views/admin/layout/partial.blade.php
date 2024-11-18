@@ -28,7 +28,7 @@
                 <i class="ti ti-x fs-8"></i>
             </div>
         </div>
-        
+
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
           <ul id="sidebarnav" class="mb-4 pb-2">
@@ -67,7 +67,7 @@
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link danger-hover-bg"
-                href="./ui-alerts.html"
+                href="{{ route("admin.produk")}}"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-danger rounded-3">
@@ -169,7 +169,7 @@
               </a>
             </li> --}}
           </ul>
-          
+
         </nav>
         <!-- End Sidebar navigation -->
       </div>
@@ -181,19 +181,6 @@
       <!--  Header Start -->
       <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class="ti ti-bell-ringing"></i>
-                <div class="notification bg-primary rounded-circle"></div>
-              </a>
-            </li>
-          </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <li class="nav-item dropdown">
@@ -224,7 +211,7 @@
         </nav>
       </header>
       <!--  Header End -->
-      
+
 @yield('admin')
 
 
@@ -236,7 +223,7 @@
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
 @if(session()->has('success'))
 <script>
     Swal.fire({
