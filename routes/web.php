@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,12 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login_proses',[LoginController::class,'login_proses'])->name('login_proses');
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::post('/login_proses', [LoginController::class, 'login_proses'])->name('login_proses');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], function () {
+route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    Route::get('/ordering', [HomeController::class, 'ordering'])->name('ordering');
 
     // Product Routes
     Route::get('/produk', [ProductController::class, 'index'])->name('produk');                  // Show all products
@@ -32,18 +33,11 @@ route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
     Route::get('/produk/edit/{id}', [ProductController::class, 'edit'])->name('editproduk');      // Show form to edit a product
     Route::put('/produk/{id}', [ProductController::class, 'update'])->name('produk.update');      // Update a product
     Route::delete('/produk/{id}', [ProductController::class, 'destroy'])->name('produk.delete');  // Delete a product
-    // Route::get('/produk', function () {
-    //     return view('admin.produk');  // Menampilkan halaman produk.blade.php di folder admin
-    // })->name('produk');
 
-    // Route::get('/addproduk', function () {
-    //     return view('admin.addproduk');  // Menampilkan halaman produk.blade.php di folder admin
-    // })->name('addproduk');
-
-    // Route::get('/editproduk', function () {
-    //     return view('admin.editproduk');  // Menampilkan halaman produk.blade.php di folder admin
-    // })->name('editproduk');
-
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/admin/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/admin/orders/{id}/update', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/admin/orders/{id}/delete', [OrderController::class, 'destroy'])->name('orders.delete');
     Route::get('/datasales', function () {
         return view('admin.datasales');  // Menampilkan halaman produk.blade.php di folder admin
     })->name('datasales');
@@ -60,34 +54,23 @@ route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
         return view('admin.editcompro');  // Menampilkan halaman produk.blade.php di folder admin
     })->name('editcompro');
 
-
+    Route::resource('profiles', ProfileController::class);
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/katalog', [HomeController::class, 'showProduct'])->name('katalog');
+Route::get('/shop', [HomeController::class, 'showShop'])->name('shop');
+Route::post('/add-to-cart', [OrderController::class, 'addToCart'])->name('order.addToCart');
+Route::get('/shopping-cart', [OrderController::class, 'viewCart'])->name('order.viewCart');
 
 
-Route::get('/shop', function () {
-    return view('shop');
-})->name('shop');
 
-Route::get('/shopping-cart', function () {
-    return view('shopping-cart');
-});
 
-Route::get('/payment', function () {
-    return view('payment');
-});
+Route::post('/save-order-details', [OrderController::class, 'saveOrderDetails'])->name('order.saveOrderDetails');
+Route::get('/payment', [OrderController::class, 'paymentPage'])->name('order.paymentPage');
+Route::post('/process-payment', [OrderController::class, 'processPayment'])->name('order.processPayment');
+Route::get('/success', [OrderController::class, 'successPage'])->name('order.successPage');
 
-Route::get('/success', function () {
-    return view('success');
-});
+Route::get('/session-clear', [OrderController::class, 'clearSession'])->name('session.clear');
 
-// Route::get('/katalog', function () {
-//     return view('katalog');
-// })->name('katalog');
-
-Route::get('/admin.produk', function () {
-    return view('admin.produk');
-});
 

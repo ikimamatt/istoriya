@@ -7,48 +7,38 @@
         <div class="card-body p-4">
           <h5 class="mb-4 fw-bold">Lihat Profil Cafe</h5>
 
-          <form>
+          <form action="{{ route('admin.profiles.update', $profiles->id) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="mb-3">
-              <label for="productName" class="form-label">Nama Cafe</label>
-              <input type="text" class="form-control" id="productName" placeholder="Masukkan nama cafe" required>
+              <label for="productName" class="form-label">Instagram</label>
+              <input type="text" name="instagram" value="{{ $profiles->instagram }}" class="form-control" id="productName" required>
             </div>
 
             <div class="mb-3">
-              <label for="productPrice" class="form-label">Deskripsi Cafe</label>
-              <input type="text" class="form-control" id="productPrice" placeholder="Masukkan deskripsi cafe" required>
+              <label for="productPrice" class="form-label">Tiktok</label>
+              <input type="text" name="tiktok" value="{{ $profiles->tiktok }}" class="form-control" id="productPrice"  required>
             </div>
 
             <div class="mb-3">
-                <label for="productPrice" class="form-label">Alamat Cafe</label>
-                <input type="text" class="form-control" id="productPrice" placeholder="Masukkan alamat cafe" required>
-              </div>
-
-            <div class="mb-3">
-              <label for="productImage" class="form-label">Logo Cafe</label>
-              <input class="form-control" type="file" id="productImage" accept="image/*" required>
+                <label for="productPrice" class="form-label">Whatsapp</label>
+                <input type="text" name="whatsapp" value="{{ $profiles->whatsapp }}" class="form-control" id="productPrice"  required>
             </div>
-            
             <div class="mb-3">
-                <label for="instagram" class="form-label">Sosial Media</label> <br>
-                <div class="d-flex align-items-center">
-                    <label for="instagram" class="form-label me-2">Instagram</label>
-                    <input type="text" class="form-control flex-grow-1" id="instagram" placeholder="Masukkan username instagram" required>
-                </div>
-                <div class="d-flex align-items-center">
-                    <label for="instagram" class="form-label me-2">Tiktok</label>
-                    <input type="text" class="form-control flex-grow-1" id="instagram" placeholder="Masukkan usetirname tiktok" required>
-                </div>
-                <div class="d-flex align-items-center">
-                    <label for="instagram" class="form-label me-2">WhatsApp</label>
-                    <input type="text" class="form-control flex-grow-1" id="instagram" placeholder="Masukkan nomor WhatsApp" required>
-                </div>
+                <label for="productPrice" class="form-label">No Telephone</label>
+                <input type="text" name="phone" class="form-control" value="{{ $profiles->phone }}"id="productPrice"  required>
             </div>
-            
-            
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">No Telephone</label>
+                <input type="text" name="maps1" class="form-control" value="{{ $profiles->phone }}"id="productPrice"  required>
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">No Telephone</label>
+                <input type="text" name="maps2" class="form-control" value="{{ $profiles->phone }}"id="productPrice"  required>
+            </div>
 
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-primary">Edit</button>
-              <a href="{{ route('admin.produk') }}" class="btn btn-secondary">Hapus</a>
             </div>
           </form>
         </div>

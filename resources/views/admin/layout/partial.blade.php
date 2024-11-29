@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="{{ asset("assets/css/styles.min.css") }}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
+<style>
+.modal {
+    z-index: 9999 !important;
+}
+
+.sidebar-nav {
+    z-index: 0; /* Misalnya, menurunkan z-index sidebar */
+}
+</style>
+
 
 <body>
   <!--  Body Wrapper -->
@@ -39,7 +49,7 @@
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
-                href="./index.html"
+                href="{{ route('admin.dashboard') }}"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-primary rounded-3">
@@ -55,7 +65,7 @@
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link warning-hover-bg"
-                href="./ui-buttons.html"
+                href="{{ route("admin.profiles.index") }}"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-warning rounded-3">
@@ -79,7 +89,7 @@
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link success-hover-bg"
-                href="{{ route("admin.ordering") }}"
+                href="{{ route("admin.orders.index") }}"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-success rounded-3">
@@ -209,10 +219,11 @@
             </ul>
           </div>
         </nav>
+        @yield('admin')
       </header>
       <!--  Header End -->
 
-@yield('admin')
+
 
 
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
