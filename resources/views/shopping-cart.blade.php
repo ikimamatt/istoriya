@@ -63,6 +63,14 @@
                                     <td class="column-4 text-center">{{ $item['quantity'] }}</td>
                                     <td class="column-5">Rp{{ number_format($item['price'] * $item['quantity'], 0, ',', '.') }}</td>
                                     <td class="column-6">{{ $item['note'] ?? 'Tidak ada' }}</td>
+                                    <td class="column-7">
+                                        <button
+                                            class="btn btn-danger btn-sm btn-delete"
+                                            data-product-id="{{ $item['id'] }}"
+                                            data-product-name="{{ $item['name'] }}">
+                                            Hapus
+                                        </button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </table>
@@ -187,6 +195,56 @@
 			</div>
 		</div>
 	</form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productId = this.dataset.productId;
+                    const productName = this.dataset.productName;
+
+                    // SweetAlert Confirmation
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: `Item "${productName}" akan dihapus dari keranjang.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Buat form dan submit secara dinamis
+                            const form = document.createElement('form');
+                            form.method = 'POST';
+                            form.action = '{{ route("cart.removeItem") }}';
+
+                            // Tambahkan CSRF token
+                            const csrfInput = document.createElement('input');
+                            csrfInput.type = 'hidden';
+                            csrfInput.name = '_token';
+                            csrfInput.value = '{{ csrf_token() }}';
+                            form.appendChild(csrfInput);
+
+                            // Tambahkan product_id ke form
+                            const productInput = document.createElement('input');
+                            productInput.type = 'hidden';
+                            productInput.name = 'product_id';
+                            productInput.value = productId;
+                            form.appendChild(productInput);
+
+                            // Tambahkan form ke body dan submit
+                            document.body.appendChild(form);
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
 
 

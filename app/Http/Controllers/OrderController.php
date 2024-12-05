@@ -116,7 +116,6 @@ class OrderController extends Controller
 
         $order = new Order();
         $order->user_name = $userDetails['name'];
-        $order->email = $userDetails['email'];
         $order->phone = $userDetails['phone'];
         $order->address = $userDetails['address'];
         $order->pickup_method = $userDetails['pickup_method'];
@@ -194,5 +193,19 @@ class OrderController extends Controller
 
     return redirect()->route('admin.orders.index')->with('success', 'Order and products updated successfully.');
 }
+public function removeItem(Request $request)
+{
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$request->product_id])) {
+        unset($cart[$request->product_id]);
+    }
+
+    session()->put('cart', $cart);
+
+    return redirect()->route('order.viewCart')->with('success', 'Item berhasil dihapus dari keranjang.');
+}
 
 }
+
+

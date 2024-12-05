@@ -72,5 +72,7 @@ Route::post('/process-payment', [OrderController::class, 'processPayment'])->nam
 Route::get('/success', [OrderController::class, 'successPage'])->name('order.successPage');
 
 Route::get('/session-clear', [OrderController::class, 'clearSession'])->name('session.clear');
+Route::post('/cart/remove', [OrderController::class, 'removeItem'])->name('cart.removeItem');
+
 
 
