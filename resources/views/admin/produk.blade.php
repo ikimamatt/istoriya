@@ -18,6 +18,8 @@
                                     <th scope="col" class="text-center">Nama</th>
                                     <th scope="col" class="text-center">Harga</th>
                                     <th scope="col" class="text-center">Categories</th>
+                                    <th scope="col" class="text-center">Stock</th>
+                                    <th scope="col" class="text-center">Preoder</th>
                                     <th scope="col" class="text-center">Gambar</th>
                                     <th scope="col" class="text-center">Aksi</th>
                                 </tr>
@@ -29,6 +31,8 @@
                                     <td class="text-center">{{ $product->name }}</td>
                                     <td class="text-center">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td class="text-center">{{ $product->categories }}</td>
+                                    <td class="text-center">{{ $product->stock }}</td>
+                                    <td class="text-center">{{ $product->preorder }}</td>
                                     <td class="text-center">
                                         @if($product->image_path)
                                         <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product Image" style="width: 80px; height: 80px;">
@@ -83,6 +87,18 @@
                         <input type="text" class="form-control" id="productPrice" name="price" required>
                     </div>
                     <div class="mb-3">
+                        <label for="productPrice" class="form-label">Jumlah Stock</label>
+                        <input required type="number" name="stock" class="form-control" id="productStock" placeholder="Masukkan jumlah stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productPrice" class="form-label">Preorder</label>
+                        <select class="form-select form-select-sm" id="productPreorder" name="preorder" aria-label="Small select example">
+                          <option value="ready">Ready</option>
+                          <option value="not_ready">Not_ready</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="productCategory" class="form-label">Kategori</label>
                         <select class="form-select form-select-sm" name="categories" id="productCategory" required>
                             <option value="" disabled>Pilih kategori produk</option>
@@ -117,10 +133,9 @@
     document.getElementById('editProductForm').action = `/admin/produk/${product.id}`;
     document.getElementById('productName').value = product.name;
     document.getElementById('productPrice').value = product.price;
+    document.getElementById('productStock').value = product.stock;
+    document.getElementById('productPreorder').value = product.preorder;
 
-
-
-    // Menentukan kategori yang dipilih
     document.getElementById('productCategory').value = product.categories;
 
     // Menampilkan modal

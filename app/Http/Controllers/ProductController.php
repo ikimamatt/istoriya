@@ -30,6 +30,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' => 'required|image',
             'categories' => 'required|string|max:255',
+            'stock' => 'required|numeric',
+            'preorder' => 'required|string|max:255',
         ]);
 
         $imagePath = $request->file('image')->store('images', 'public');
@@ -40,6 +42,8 @@ class ProductController extends Controller
             'price' => $request->price,
             'categories' => $request->categories,
             'image_path' => $imagePath,
+            'stock' => $request->stock,
+            'preorder' => $request->preorder,
         ]);
 
         return redirect()->route('admin.produk')->with('success', 'Product created successfully');
@@ -63,12 +67,16 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'categories' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi gambar (opsional)
+            'stock' => 'required|numeric',
+            'preorder' => 'required|string|max:255',
         ]);
 
         // Update nama dan harga produk
         $product->name = $request->name;
         $product->price = $request->price;
         $product->categories = $request->categories;
+        $product->stock = $request->stock;
+        $product->preorder = $request->preorder;
 
         // Jika ada gambar baru, upload dan update path gambar
         if ($request->hasFile('image')) {

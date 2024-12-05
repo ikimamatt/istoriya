@@ -34,7 +34,8 @@ class HomeController extends Controller
     }
     public function showShop()
     {
-        $products = Product::all();
+        // Mengambil produk dengan field 'preorder' bernilai 'ready'
+        $products = Product::where('preorder', 'ready')->get();
         return view('shop', compact('products'));
     }
     public function addToCart(Request $request)

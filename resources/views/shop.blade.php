@@ -14,7 +14,7 @@
 						Coffee
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="coffe_moctail">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".coffe_moctail">
 						Coffee Mocktail (+Soda)
 					</button>
 
@@ -44,7 +44,9 @@
                         <div class="block2-pic hov-img0">
                             <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
 
-                            <a href="#" data-id="{{ $product->id }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                            <a href="#"
+                                data-id="{{ $product->id }}"
+                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                 Order
                             </a>
                         </div>
@@ -64,7 +66,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+                <div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="modal-{{ $product->id }}">
                     <div class="overlay-modal1 js-hide-modal1"></div>
 
                     <div class="container">
@@ -80,7 +82,12 @@
                                             <div class="slick3 gallery-lb">
                                                 <div class="item-slick3" data-thumb="{{ asset('storage/' . $product->image_path) }}">
                                                     <div class="wrap-pic-w pos-relative">
-                                                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
+                                                        <a href="#"
+                                                            data-id="{{ $product->id }}"
+                                                            data-image="{{ asset('storage/' . $product->image_path) }}"
+                                                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                            Order
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -96,42 +103,44 @@
 
                                         <span class="mtext-106 cl2">
                                             Rp{{ number_format($product->price, 0, ',', '.') }}
+                                        </span><br><br>
+
+                                        <span class="mtext-104 cl2">
+                                            Stock : {{ $product->stock }}
                                         </span>
 
                                         <div class="p-t-33">
-                                            <div class="p-t-33">
-                                                <form action="{{ route('order.addToCart') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                    <input type="hidden" name="product_name" value="{{ $product->name }}">
-                                                    <input type="hidden" name="product_price" value="{{ $product->price }}">
-                                                    <input type="hidden" name="product_image" value="{{ $product->image_path }}">
+                                            <form action="{{ route('order.addToCart') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="product_name" value="{{ $product->name }}">
+                                                <input type="hidden" name="product_price" value="{{ $product->price }}">
+                                                <input type="hidden" name="product_image" value="{{ $product->image_path }}">
 
-                                                    <div class="p-b-10">
-                                                        <label for="note" class="stext-102 cl3 p-t-23">Catatan</label>
-                                                        <textarea id="note" name="note" class="form-control note-input" placeholder="Masukkan catatan (opsional)"></textarea>
+
+                                                <div class="p-b-10">
+                                                    <label for="note" class="stext-102 cl3 p-t-23">Catatan</label>
+                                                    <textarea id="note" name="note" class="form-control note-input" placeholder="Masukkan catatan (opsional)"></textarea>
+                                                </div>
+
+                                                <div class="flex-w flex-r-m p-b-10">
+                                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                                        <button type="button" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                                        </button>
+
+                                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="1">
+
+                                                        <button type="button" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                                        </button>
                                                     </div>
+                                                </div>
 
-                                                    <div class="flex-w flex-r-m p-b-10">
-                                                        <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                                            <button type="button" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                                <i class="fs-16 zmdi zmdi-minus"></i>
-                                                            </button>
-
-                                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="1">
-
-                                                            <button type="button" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                                <i class="fs-16 zmdi zmdi-plus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                    <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                                        Masukkan ke Keranjang
-                                                    </button>
-                                                </form>
-                                            </div>
-
+                                                <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                                    Masukkan ke Keranjang
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -151,26 +160,96 @@
 		</div>
 	</div>
 
+    <script>
 
+document.addEventListener('DOMContentLoaded', function () {
+    const modalTriggers = document.querySelectorAll('.js-show-modal1');
 
-    <!-- Existing page scripts -->
-    <!--===============================================================================================-->
-    <script src="{{ asset('assets1/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-    <!--===============================================================================================-->
-        <script src="{{ asset('assets1/vendor/animsition/js/animsition.min.js') }}"></script>
-    <!--===============================================================================================-->
-        <script src="{{ asset('assets1/vendor/bootstrap/js/popper.js') }}"></script>
-        <script src="{{ asset('assets1/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!--===============================================================================================-->
-        <script src="{{ asset('assets1/vendor/select2/select2.min.js') }}"></script>
-        <script>
-            $(".js-select2").each(function(){
-                $(this).select2({
-                    minimumResultsForSearch: 20,
-                    dropdownParent: $(this).next('.dropDownSelect2')
-                });
-            })
-        </script>
-    <!--===============================================================================================-->
-        <!-- Other existing scripts remain the same -->
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Sembunyikan semua modal yang aktif
+            document.querySelectorAll('.js-modal1').forEach(modal => {
+                modal.classList.remove('show-modal');
+            });
+
+            // Tangkap ID produk dari atribut data-id
+            const productId = this.getAttribute('data-id');
+
+            // Tangkap path gambar dari atribut data-image
+            const productImage = this.getAttribute('data-image');
+
+            // Cari modal spesifik berdasarkan ID
+            const modal = document.getElementById('modal-' + productId);
+
+            // Tampilkan modal yang sesuai
+            if (modal) {
+                modal.classList.add('show-modal');
+
+                // Update gambar di modal
+                const modalImage = modal.querySelector('.wrap-pic-w img');
+                if (modalImage) {
+                    modalImage.src = productImage;
+                }
+            } else {
+                console.error('Modal not found for product ID:', productId);
+            }
+        });
+    });
+
+    // Tangani penutupan modal
+    document.querySelectorAll('.js-hide-modal1').forEach(closeBtn => {
+        closeBtn.addEventListener('click', function () {
+            const modal = this.closest('.js-modal1');
+            if (modal) {
+                modal.classList.remove('show-modal');
+            }
+        });
+    });
+});
+
+    </script>
+
+    {{-- <script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const modalTriggers = document.querySelectorAll('.js-show-modal1');
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Sembunyikan semua modal yang aktif
+            document.querySelectorAll('.js-modal1').forEach(modal => {
+                modal.classList.remove('show-modal');
+            });
+
+            // Tangkap ID produk dari atribut data-id
+            const productId = this.getAttribute('data-id');
+
+            // Cari modal spesifik berdasarkan ID
+            const modal = document.getElementById('modal-' + productId);
+
+            // Tampilkan modal yang sesuai
+            if (modal) {
+                modal.classList.add('show-modal');
+            } else {
+                console.error('Modal not found for product ID:', productId);
+            }
+        });
+    });
+
+    // Tangani penutupan modal
+    document.querySelectorAll('.js-hide-modal1').forEach(closeBtn => {
+        closeBtn.addEventListener('click', function () {
+            const modal = this.closest('.js-modal1');
+            if (modal) {
+                modal.classList.remove('show-modal');
+            }
+        });
+    });
+});
+
+    </script> --}}
+
 @endsection

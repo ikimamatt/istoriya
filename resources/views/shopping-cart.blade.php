@@ -91,7 +91,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+                            {{-- <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
                                         Email:
@@ -101,7 +101,7 @@
                                 <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
                                     <input required class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="email" placeholder="Masukkan Email Anda">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
@@ -122,11 +122,20 @@
                                 </div>
 
                                 <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
-                                    <input required class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="alamat" placeholder="Masukkan Alamat Anda">
+                                    <textarea
+                                        required
+                                        class="stext-111 cl8 plh3 size-111 p-lr-15"
+                                        name="alamat"
+                                        rows="3"
+                                        placeholder="Masukkan Alamat Anda"></textarea>
                                 </div>
+                                <small id="emailHelp" class="form-text text-danger">
+                                    Berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
+                                </small>
                             </div>
 
-                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+
+                            {{-- <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
                                         Metode Pengambilan:
@@ -141,7 +150,7 @@
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="flex-w flex-t p-t-27 p-b-33">
                                 <div class="size-208">

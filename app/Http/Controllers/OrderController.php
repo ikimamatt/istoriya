@@ -24,12 +24,20 @@ class OrderController extends Controller
 
       // Update order (seperti status atau data lainnya)
       public function update(Request $request, $id)
-      {
-          $order = Order::findOrFail($id);
-          $order->update($request->all());
+    {
+        $order = Order::findOrFail($id);
 
-          return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully');
-      }
+        $order->update([
+            'user_name' => $request->user_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'pickup_method' => $request->pickup_method,
+            'total' => $request->total,
+        ]);
+
+        return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully.');
+    }
 
       // Hapus order
       public function destroy($id)
@@ -140,7 +148,6 @@ class OrderController extends Controller
     public function successPage()
     {
         $orderCode = session()->get('order_code');
-        session()->flush();
         return view('success', compact('orderCode'));
     }
 
@@ -152,4 +159,42 @@ class OrderController extends Controller
         // Redirect ke halaman tertentu, misalnya ke halaman utama
         return redirect('/shop')->with('message', 'Session berhasil dihapus.');
     }
+    public function updateOrderWithProducts(Request $request, $id)
+{
+    $order = Order::with('products')->findOrFail($id);
+
+    // Validasi data order
+    $request->validate([
+        'user_name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|string|max:15',
+        'address' => 'required|string|max:255',
+        'pickup_method' => 'required|in:ambil_sendiri,diantar',
+        'total' => 'required|numeric|min:0',
+    ]);
+
+    // Update data order
+    $order->update([
+        'user_name' => $request->user_name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'address' => $request->address,
+        'pickup_method' => $request->pickup_method,
+        'total' => $request->total,
+    ]);
+
+    // Validasi dan update produk
+    foreach ($request->products as $productId => $productData) {
+        $product = $order->products()->findOrFail($productId);
+        $product->update([
+            'product_name' => $productData['product_name'],
+            'price' => $productData['price'],
+            'quantity' => $productData['quantity'],
+            'note' => $productData['note'] ?? null,
+        ]);
+    }
+
+    return redirect()->route('admin.orders.index')->with('success', 'Order and products updated successfully.');
+}
+
 }

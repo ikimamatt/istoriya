@@ -51,7 +51,7 @@
             <tbody>
                 @foreach ($orders as $order)
                     <tr>
-                        <td class="fs-3 fw-normal mb-0">{{ $order->id }}</td>
+                        <td class="fs-3 fw-normal mb-0">{{ $loop->iteration }}</td>
                         <td class="fs-3 fw-normal mb-0 text-success">{{ $order->order_code }}</td>
                         <td class="fs-3 fw-normal mb-0">{{ $order->user_name }}</td>
                         <td class="fs-3 fw-normal mb-0">Rp{{ number_format($order->total, 0, ',', '.') }}</td>
@@ -69,87 +69,102 @@
                         </td>
 
 <!-- Modal -->
-<div class="modal  modal-sm fade" id="orderModal{{ $order->id }}" tabindex="-1" aria-labelledby="orderModalLabel{{ $order->id }}" aria-hidden="true">
+<div class="modal fade" id="orderModal{{ $order->id }}" tabindex="-1" aria-labelledby="orderModalLabel{{ $order->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
+            <form action="{{ route('admin.orders.updateWithProducts', $order->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-header bg-light">
                     <h5 class="modal-title fw-bold" id="orderModalLabel{{ $order->id }}">
-                        Order Details - #{{ $order->order_code }}
+                        Edit Order - #{{ $order->order_code }}
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Data Order -->
+                    <h5 class="fw-bold">Order Details</h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="user_name" class="form-label">User Name</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="ti ti-user"></i></span>
-                                <input type="text" class="form-control" id="user_name" name="user_name"
-                                       value="{{ $order->user_name }}" required>
-                            </div>
+                            <input type="text" class="form-control" id="user_name" name="user_name" value="{{ $order->user_name }}" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="ti ti-mail"></i></span>
-                                <input type="email" class="form-control" id="email" name="email"
-                                       value="{{ $order->email }}" required>
-                            </div>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ $order->email }}" required>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="ti ti-phone"></i></span>
-                                <input type="text" class="form-control" id="phone" name="phone"
-                                       value="{{ $order->phone }}" required>
-                            </div>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ $order->phone }}" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="pickup_method" class="form-label">Pickup Method</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="ti ti-truck"></i></span>
-                                <select class="form-select" id="pickup_method" name="pickup_method" required>
-                                    <option value="ambil_sendiri" {{ $order->pickup_method == 'ambil_sendiri' ? 'selected' : '' }}>
-                                        Ambil Sendiri
-                                    </option>
-                                    <option value="diantar" {{ $order->pickup_method == 'diantar' ? 'selected' : '' }}>
-                                        Diantar
-                                    </option>
-                                </select>
-                            </div>
+                            <select class="form-select" id="pickup_method" name="pickup_method" required>
+                                <option value="ambil_sendiri" {{ $order->pickup_method == 'ambil_sendiri' ? 'selected' : '' }}>Ambil Sendiri</option>
+                                <option value="diantar" {{ $order->pickup_method == 'diantar' ? 'selected' : '' }}>Diantar</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="ti ti-map-pin"></i></span>
+                        <div class="col-md-12 mb-3">
+                            <label for="address" class="form-label">Address</label>
                             <textarea class="form-control" id="address" name="address" rows="3" required>{{ $order->address }}</textarea>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="total" class="form-label">Total</label>
+                            <input type="number" class="form-control" id="total" name="total" value="{{ $order->total }}" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="total" class="form-label">Total</label>
-                        <div class="input-group">
-                            <span class="input-group-text">Rp</span>
-                            <input type="text" class="form-control" id="total" name="total"
-                                   value="{{ number_format($order->total, 0, ',', '.') }}" required>
+
+                    <!-- Produk Order -->
+                    <h5 class="fw-bold mt-4">Purchased Products</h5>
+                    @foreach ($order->products as $product)
+                        <div class="border rounded p-3 mb-3">
+                            <h6 class="fw-bold">Product #{{ $loop->iteration }}</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="product_name_{{ $product->id }}" class="form-label">Product Name</label>
+                                    <input type="text" name="products[{{ $product->id }}][product_name]" id="product_name_{{ $product->id }}" class="form-control" value="{{ $product->product_name }}" required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="price_{{ $product->id }}" class="form-label">Price</label>
+                                    <input type="number" name="products[{{ $product->id }}][price]" id="price_{{ $product->id }}" class="form-control" value="{{ $product->price }}" required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="quantity_{{ $product->id }}" class="form-label">Quantity</label>
+                                    <input type="number" name="products[{{ $product->id }}][quantity]" id="quantity_{{ $product->id }}" class="form-control" value="{{ $product->quantity }}" required>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="note_{{ $product->id }}" class="form-label">Note</label>
+                                    <textarea name="products[{{ $product->id }}][note]" id="note_{{ $product->id }}" class="form-control" rows="2">{{ $product->note }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <!-- Payment Proof -->
+                    <h5 class="fw-bold mt-4">Payment Proof</h5>
+                    <div class="mb-3 text-center">
+                        <label for="payment_proof" class="form-label">Uploaded Payment Proof</label>
+                        <div class="mb-3">
+                            @if ($order->payment_proof)
+                                <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Payment Proof" class="img-fluid mb-3" style="max-height: 300px;">
+                            @else
+                                <p class="text-muted">No payment proof uploaded.</p>
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="ti ti-device-floppy me-1"></i>Save Changes
+                        <i class="ti ti-device-floppy"></i> Save Changes
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
 
                     </tr>
 

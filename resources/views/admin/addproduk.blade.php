@@ -20,8 +20,13 @@
             </div>
 
             <div class="mb-3">
+                <label for="productPrice" class="form-label">Jumlah Stock</label>
+                <input required type="number" name="stock" class="form-control" id="productPrice" placeholder="Masukkan harga produk" required>
+              </div>
+
+            <div class="mb-3">
               <label for="productPrice" class="form-label">Kategori</label>
-              <select class="form-select form-select-sm" name="categories" aria-label="Small select example">
+              <select required class="form-select form-select-sm" name="categories" aria-label="Small select example">
                 <option value="coffee">coffee</option>
                 <option value="coffe_moctail">coffe_moctail</option>
                 <option value="fruit_tea">fruit_tea</option>
@@ -29,6 +34,13 @@
                 <option value="signature">signature</option>
                 <option value="pastry_dessert">pastry_dessert</option>
               </select>
+            </div>
+            <div class="mb-3">
+                <label for="productPrice" class="form-label">Preorder</label>
+                <select class="form-select form-select-sm" name="preorder" aria-label="Small select example">
+                  <option value="ready">Ready</option>
+                  <option value="not_ready">Not_ready</option>
+                </select>
             </div>
 
             <div class="mb-3">

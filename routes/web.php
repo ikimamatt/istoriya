@@ -55,6 +55,8 @@ route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     })->name('editcompro');
 
     Route::resource('profiles', ProfileController::class);
+    Route::put('/admin/orders/{order}', [OrderController::class, 'updateOrderWithProducts'])->name('orders.updateWithProducts');
+
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');

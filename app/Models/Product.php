@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['product_id', 'name', 'price', 'categories', 'image_path'];
+    protected $fillable = ['product_id', 'name', 'price', 'categories','stock','preorder', 'image_path'];
 
     // Generate a unique 4-digit product ID
     public static function generateProductId()

@@ -28,14 +28,7 @@
                 <label for="productPrice" class="form-label">No Telephone</label>
                 <input type="text" name="phone" class="form-control" value="{{ $profiles->phone }}"id="productPrice"  required>
             </div>
-            <div class="mb-3">
-                <label for="productPrice" class="form-label">No Telephone</label>
-                <input type="text" name="maps1" class="form-control" value="{{ $profiles->phone }}"id="productPrice"  required>
-            </div>
-            <div class="mb-3">
-                <label for="productPrice" class="form-label">No Telephone</label>
-                <input type="text" name="maps2" class="form-control" value="{{ $profiles->phone }}"id="productPrice"  required>
-            </div>
+
 
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-primary">Edit</button>
