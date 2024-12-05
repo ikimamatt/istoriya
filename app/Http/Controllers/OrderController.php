@@ -81,14 +81,12 @@ class OrderController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email',
             'notelp' => 'required|numeric',
             'alamat' => 'required|string',
             'pickup_method' => 'required|in:ambil_sendiri,diantar',
         ]);
         $userDetails = [
             'name' => $request->nama,
-            'email' => $request->email,
             'phone' => $request->notelp,
             'address' => $request->alamat,
             'pickup_method' => $request->pickup_method,
