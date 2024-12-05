@@ -66,8 +66,14 @@
                                 </tr>
                                 @endforeach
                             </table>
-						</div>
+                            <br>
 
+						</div>
+                        <a href="{{ route('shop') }}" class="p-t-27">
+                            <button  class="flex-c-m btn btn-sm stext-101 cl0 size-116 bg1 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                kembali
+                            </button>
+                        </a>
 
 					</div>
 				</div>
@@ -114,6 +120,25 @@
                                 </div>
                             </div>
 
+
+
+
+                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+                                <div class="size-208">
+                                    <span class="stext-110 cl2">
+                                        Metode Pengambilan:
+                                    </span>
+                                </div>
+
+                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                                    <select class="js-select2" required name="pickup_method">
+                                        <option>Pilih Opsi</option>
+                                        <option value="ambil_sendiri">Ambil Sendiri</option>
+                                        <option value="diantar">Diantar</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </div>
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
@@ -130,27 +155,9 @@
                                         placeholder="Masukkan Alamat Anda"></textarea>
                                 </div>
                                 <small id="emailHelp" class="form-text text-danger">
-                                    Berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
+                                    note:Apabila Pengantaran berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
                                 </small>
                             </div>
-
-
-                            {{-- <div class="flex-w flex-t bor12 p-t-15 p-b-30">
-                                <div class="size-208">
-                                    <span class="stext-110 cl2">
-                                        Metode Pengambilan:
-                                    </span>
-                                </div>
-
-                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" required name="pickup_method">
-                                        <option>Pilih Opsi</option>
-                                        <option value="ambil_sendiri">Ambil Sendiri</option>
-                                        <option value="diantar">Diantar</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div> --}}
 
                             <div class="flex-w flex-t p-t-27 p-b-33">
                                 <div class="size-208">

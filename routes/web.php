@@ -66,8 +66,6 @@ Route::post('/add-to-cart', [OrderController::class, 'addToCart'])->name('order.
 Route::get('/shopping-cart', [OrderController::class, 'viewCart'])->name('order.viewCart');
 
 
-
-
 Route::post('/save-order-details', [OrderController::class, 'saveOrderDetails'])->name('order.saveOrderDetails');
 Route::get('/payment', [OrderController::class, 'paymentPage'])->name('order.paymentPage');
 Route::post('/process-payment', [OrderController::class, 'processPayment'])->name('order.processPayment');
