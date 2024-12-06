@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -205,6 +206,42 @@ public function removeItem(Request $request)
 
     return redirect()->route('order.viewCart')->with('success', 'Item berhasil dihapus dari keranjang.');
 }
+public function printReceipt($orderId)
+{
+    $order = Order::with('products')->findOrFail($orderId);
+
+    return view('admin.receipt', compact('order'));
+}
+
+public function incomeReport(Request $request)
+{
+    $month = $request->input('month', Carbon::now()->format('m')); // Default bulan ini
+    $year = $request->input('year', Carbon::now()->format('Y'));   // Default tahun ini
+
+    // Total pemasukan per bulan
+    $orders = Order::whereMonth('created_at', $month)
+        ->whereYear('created_at', $year)
+        ->get();
+
+    $totalIncome = $orders->sum('total');
+
+    // Rekap jumlah produk yang terjual
+    $products = [];
+    foreach ($orders as $order) {
+        foreach ($order->products as $product) {
+            if (!isset($products[$product->product_name])) {
+                $products[$product->product_name] = 0;
+            }
+            $products[$product->product_name] += $product->quantity;
+        }
+    }
+
+    // Sorting produk berdasarkan jumlah terjual
+    arsort($products);
+
+    return view('admin.income-report', compact('totalIncome', 'products', 'month', 'year'));
+}
+
 
 }
 

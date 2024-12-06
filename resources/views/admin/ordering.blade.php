@@ -23,14 +23,7 @@
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuButton1"
             >
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li>
-                <a class="dropdown-item" href="#">Another action</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  >Something else here</a
-                >
+              <li><a class="dropdown-item" href="{{ route('admin.incomeReport') }}">Rekap Pemasukan</a></li>
               </li>
             </ul>
           </div>
@@ -154,6 +147,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <a href="{{ route('admin.orders.receipt', $order->id) }}" class="btn btn-secondary btn-sm">Print Receipt</a>
+
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">
                         <i class="ti ti-device-floppy"></i> Save Changes

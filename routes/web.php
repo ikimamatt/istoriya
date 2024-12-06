@@ -57,6 +57,12 @@ route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::resource('profiles', ProfileController::class);
     Route::put('/admin/orders/{order}', [OrderController::class, 'updateOrderWithProducts'])->name('orders.updateWithProducts');
 
+    Route::get('/admin/orders/{id}/receipt', [OrderController::class, 'printReceipt'])->name('orders.receipt');
+    Route::get('/admin/income-report', [OrderController::class, 'incomeReport'])->name('incomeReport');
+
+
+
+
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');

@@ -1,6 +1,5 @@
 @extends('admin.layout.partial')
 @section('admin')
-
     <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
@@ -11,9 +10,7 @@
                   <div class="text-center">
                     <h5 class="card-title fw-semibold">Halo selamat datang admin!</h5>
                   </div>
-
                 </div>
-
               </div>
             </div>
           </div>
