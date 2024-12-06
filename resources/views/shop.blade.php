@@ -79,6 +79,16 @@
                                 <div class="col-md-6 col-lg-7 p-b-30">
                                     <div class="p-l-25 p-r-30 p-lr-0-lg">
                                         <div class="wrap-slick3 flex-sb flex-w">
+                                            <div class="wrap-slick3-dots"></div>
+                                            <div class="wrap-slick3-arrows flex-sb-m flex-w">
+                                                <img class="text-center" src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-7 p-b-30">
+                                    <div class="p-l-25 p-r-30 p-lr-0-lg">
+                                        <div class="wrap-slick3 flex-sb flex-w">
                                             <div class="slick3 gallery-lb">
                                                 <div class="item-slick3" data-thumb="{{ asset('storage/' . $product->image_path) }}">
                                                     <div class="wrap-pic-w pos-relative">
@@ -160,96 +170,68 @@
 		</div>
 	</div>
 
+    <script src="{{ asset('assets1/vendor/MagnificPopup/jquery.magnific-popup.min.js') }}"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalTriggers = document.querySelectorAll('.js-show-modal1');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const modalTriggers = document.querySelectorAll('.js-show-modal1');
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function (e) {
+                    e.preventDefault();
 
-    modalTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function (e) {
-            e.preventDefault();
+                    // Sembunyikan semua modal yang aktif
+                    document.querySelectorAll('.js-modal1').forEach(modal => {
+                        modal.classList.remove('show-modal');
+                    });
 
-            // Sembunyikan semua modal yang aktif
-            document.querySelectorAll('.js-modal1').forEach(modal => {
-                modal.classList.remove('show-modal');
+                    // Tangkap ID produk dari atribut data-id
+                    const productId = this.getAttribute('data-id');
+
+                    // Tangkap path gambar dari atribut data-image
+                    const productImage = this.getAttribute('data-image');
+
+                    // Cari modal spesifik berdasarkan ID
+                    const modal = document.getElementById('modal-' + productId);
+
+                    // Tampilkan modal yang sesuai
+                    if (modal) {
+                        modal.classList.add('show-modal');
+
+                        // Update gambar di modal
+                        const modalImage = modal.querySelector('.wrap-pic-w img');
+                        if (modalImage) {
+                            modalImage.src = productImage;
+                        }
+                    } else {
+                        console.error('Modal not found for product ID:', productId);
+                    }
+                });
             });
 
-            // Tangkap ID produk dari atribut data-id
-            const productId = this.getAttribute('data-id');
-
-            // Tangkap path gambar dari atribut data-image
-            const productImage = this.getAttribute('data-image');
-
-            // Cari modal spesifik berdasarkan ID
-            const modal = document.getElementById('modal-' + productId);
-
-            // Tampilkan modal yang sesuai
-            if (modal) {
-                modal.classList.add('show-modal');
-
-                // Update gambar di modal
-                const modalImage = modal.querySelector('.wrap-pic-w img');
-                if (modalImage) {
-                    modalImage.src = productImage;
-                }
-            } else {
-                console.error('Modal not found for product ID:', productId);
-            }
+            // Tangani penutupan modal
+            document.querySelectorAll('.js-hide-modal1').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function () {
+                    const modal = this.closest('.js-modal1');
+                    if (modal) {
+                        modal.classList.remove('show-modal');
+                    }
+                });
+            });
         });
-    });
-
-    // Tangani penutupan modal
-    document.querySelectorAll('.js-hide-modal1').forEach(closeBtn => {
-        closeBtn.addEventListener('click', function () {
-            const modal = this.closest('.js-modal1');
-            if (modal) {
-                modal.classList.remove('show-modal');
-            }
-        });
-    });
-});
-
     </script>
 
-    {{-- <script>
-   document.addEventListener('DOMContentLoaded', function () {
-    const modalTriggers = document.querySelectorAll('.js-show-modal1');
 
-    modalTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Sembunyikan semua modal yang aktif
-            document.querySelectorAll('.js-modal1').forEach(modal => {
-                modal.classList.remove('show-modal');
-            });
-
-            // Tangkap ID produk dari atribut data-id
-            const productId = this.getAttribute('data-id');
-
-            // Cari modal spesifik berdasarkan ID
-            const modal = document.getElementById('modal-' + productId);
-
-            // Tampilkan modal yang sesuai
-            if (modal) {
-                modal.classList.add('show-modal');
-            } else {
-                console.error('Modal not found for product ID:', productId);
-            }
-        });
-    });
-
-    // Tangani penutupan modal
-    document.querySelectorAll('.js-hide-modal1').forEach(closeBtn => {
-        closeBtn.addEventListener('click', function () {
-            const modal = this.closest('.js-modal1');
-            if (modal) {
-                modal.classList.remove('show-modal');
-            }
-        });
-    });
-});
-
-    </script> --}}
 
 @endsection

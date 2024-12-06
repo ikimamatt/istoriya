@@ -34,9 +34,6 @@
 						Pastry Dessert
 					</button>
 				</div>
-
-
-
 			</div>
 
 			<div class="row isotope-grid">

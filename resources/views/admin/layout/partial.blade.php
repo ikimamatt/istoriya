@@ -64,7 +64,7 @@ html, body {
       <!-- Sidebar scroll-->
       <div class="scroll-sidebar" data-simplebar>
         <div class="d-flex mb-4 align-items-center mr-4">
-            <a href="index.html" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
+            <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
                 <img src="{{ asset('assets/images/logos/logo1.png') }}" width="30" alt="Logo">
                 <h2 class="ms-3 mb-0 text-bold">Istoriya Cafe</h2>
                 {{-- <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt=""> --}}
