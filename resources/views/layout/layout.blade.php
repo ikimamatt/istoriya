@@ -34,7 +34,27 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets1/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets1/css/main.css') }}">
 <!--===============================================================================================-->
+<style>
+    .js-modal1 {
+    display: none; /* Semua modal tersembunyi secara default */
+}
+
+.js-modal1.show-modal {
+    display: block; /* Modal yang aktif tampil */
+}
+img {
+    display: block !important; /* Pastikan gambar terlihat */
+    max-width: 100%; /* Sesuaikan ukuran */
+}
+.show-modal {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+    z-index: 9999;
+}
+</style>
 </head>
+
 <body class="animsition">
 
 	<!-- Header -->
@@ -46,7 +66,7 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="{{ asset('assets/images/logos/logo1.png') }}" class="logo">
+					<a href="{{ route('index') }}" class="logo">
 						<img src="assets/images/logos/logo1.png" alt="IMG-LOGO">
 					</a>
 
@@ -62,19 +82,17 @@
                             </li>
 
                             <li class="{{ Request::is('shop') ? 'active-menu' : '' }}">
-                                <a href="{{ route('shop') }}">Pesan</a>
+                                <a href="{{ route('shop') }}">Pesan disini</a>
                             </li>
                         </ul>
                     </div>
+                    <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m">
+                        <a href="{{ route('order.viewCart') }}">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </a>
+                    </div>
 
-					<!-- Icon header -->
-					{{-- <div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-
-
-					</div> --}}
 				</nav>
 			</div>
 		</div>
@@ -83,22 +101,16 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="assets/images/logos/logo1.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search"></i>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10  js-show-cart" >
+					<a href="{{ route('order.viewCart') }}">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </a>
 				</div>
-
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
-
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
 			</div>
 
 			<!-- Button show menu -->
@@ -107,23 +119,31 @@
 					<span class="hamburger-inner"></span>
 				</span>
 			</div>
+            <!-- Menu Mobile -->
+            <div class="menu-mobile">
+
+
+                <ul class="main-menu-m">
+                    <li class="{{ Request::is('/') ? 'active-menu' : '' }}">
+                        <a href="{{ route('index') }}">Beranda</a>
+                    </li>
+
+                    <li class="{{ Request::is('/') ? 'active-menu' : '' }}">
+                        <a href="{{ route('index') }}">Beranda</a>
+                    </li>
+
+                    <li class="{{ Request::is('katalog') ? 'active-menu' : '' }}">
+                        <a href="{{ route('katalog') }}">Katalog Produk</a>
+                    </li>
+
+                    <li class="{{ Request::is('shop') ? 'active-menu' : '' }}">
+                        <a href="{{ route('shop') }}">Pesan disini</a>
+                    </li>
+                </ul>
+            </div>
 		</div>
 
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<div class="container-search-header">
-				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="images/icons/icon-close2.png" alt="CLOSE">
-				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
-				</form>
-			</div>
-		</div>
 	</header>
 
 
@@ -132,10 +152,10 @@
 
 
 	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
+	<footer class="bg3 p-t-75 p-b-32 ">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg-6 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						Categories
 					</h4>
@@ -143,31 +163,41 @@
 					<ul>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+								Coffee
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
+								Coffee Mocktail (+Soda)
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
+								Fruit Tea Series
 							</a>
 						</li>
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
+								Milk Based
+							</a>
+						</li>
+                        <li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								The Signature
+							</a>
+						</li>
+                        <li class="p-b-10">
+							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								Pastry Dessert
 							</a>
 						</li>
 					</ul>
 				</div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				{{-- <div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						Help
 					</h4>
@@ -197,18 +227,18 @@
 							</a>
 						</li>
 					</ul>
-				</div>
+				</div> --}}
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+				<div class="col-sm-6 col-lg-6 p-b-50">
+					<h4 class="stext-301 cl7 p-b-30">
 						GET IN TOUCH
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Ada pertanyaan? hubungi kami di wa <a href="https://wa.me/081346606010">081346606010</a>
 					</p>
 
-					<div class="p-t-27">
+					{{-- <div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
@@ -220,55 +250,17 @@
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-pinterest-p"></i>
 						</a>
-					</div>
+					</div> --}}
 				</div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
 
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form>
-				</div>
 			</div>
 
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
 
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made By Istoria</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
@@ -277,12 +269,125 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 
 
+
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
+
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+<!--===============================================================================================-->
+<script src="{{ asset('assets1/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/animsition/js/animsition.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ asset('assets1/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/select2/select2.min.js') }}"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ asset('assets1/vendor/daterangepicker/daterangepicker.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/slick/slick.min.js') }}"></script>
+	<script src="{{ asset('assets1/js/slick-custom.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/parallax100/parallax100.js') }}"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/MagnificPopup/jquery.magnific-popup.min.js') }}"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/isotope/isotope.pkgd.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/sweetalert/sweetalert.min.js') }}"></script>
+	<script>
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{{ asset('assets1/js/main.js') }}"></script>
 
 
 <!--===============================================================================================-->
@@ -386,6 +491,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ asset('assets1/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>

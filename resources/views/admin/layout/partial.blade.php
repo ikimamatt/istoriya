@@ -10,13 +10,48 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 <style>
-.modal {
-    z-index: 9999 !important;
+    .card-body {
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
-.sidebar-nav {
-    z-index: 0; /* Misalnya, menurunkan z-index sidebar */
+.container-fluid {
+    height: 100vh;
+    overflow-y: auto;
 }
+
+.left-sidebar {
+    z-index: 1; /* Sidebar tetap di bawah modal */
+}
+
+
+
+.modal-backdrop {
+    z-index: 1040 !important; /* Pastikan backdrop modal berada di bawah modal */
+}
+
+.left-sidebar {
+    z-index: 1; /* Turunkan prioritas sidebar */
+    position: fixed; /* Pastikan sidebar tetap di posisi tetap */
+}
+
+.modal {
+    z-index: 1050 !important; /* Sesuaikan dengan Bootstrap default */
+}
+
+.modal-backdrop {
+    z-index: 1040 !important; /* Tambahkan lapisan backdrop di bawah modal */
+}
+
+html, body {
+    height: 100%;
+    overflow-y: auto; /* Aktifkan scroll */
+}
+.body-wrapper {
+    margin-left: 250px; /* Sesuaikan dengan lebar sidebar */
+    overflow-y: auto; /* Pastikan scroll diaktifkan */
+}
+
 </style>
 
 
@@ -29,7 +64,7 @@
       <!-- Sidebar scroll-->
       <div class="scroll-sidebar" data-simplebar>
         <div class="d-flex mb-4 align-items-center mr-4">
-            <a href="index.html" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
+            <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
                 <img src="{{ asset('assets/images/logos/logo1.png') }}" width="30" alt="Logo">
                 <h2 class="ms-3 mb-0 text-bold">Istoriya Cafe</h2>
                 {{-- <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt=""> --}}
@@ -212,7 +247,7 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a> --}}
-                    <a href="{{ route('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none">Logout</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-primary mx-3 mt-2 d-block shadow-none" id="logout-btn">Logout</a>
                   </div>
                 </div>
               </li>
@@ -245,7 +280,25 @@
     });
 </script>
 @endif
-
+<script>
+    document.getElementById('logout-btn').addEventListener('click', function () {
+      Swal.fire({
+        title: 'Konfirmasi Logout',
+        text: "Apakah Anda yakin ingin keluar?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Logout',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirect ke route logout jika dikonfirmasi
+          window.location.href = "{{ route('logout') }}";
+        }
+      });
+    });
+  </script>
 
 @if(session()->has('error'))
 <script>

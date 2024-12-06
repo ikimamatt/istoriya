@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -24,12 +25,20 @@ class OrderController extends Controller
 
       // Update order (seperti status atau data lainnya)
       public function update(Request $request, $id)
-      {
-          $order = Order::findOrFail($id);
-          $order->update($request->all());
+    {
+        $order = Order::findOrFail($id);
 
-          return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully');
-      }
+        $order->update([
+            'user_name' => $request->user_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'pickup_method' => $request->pickup_method,
+            'total' => $request->total,
+        ]);
+
+        return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully.');
+    }
 
       // Hapus order
       public function destroy($id)
@@ -73,14 +82,12 @@ class OrderController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email',
             'notelp' => 'required|numeric',
             'alamat' => 'required|string',
             'pickup_method' => 'required|in:ambil_sendiri,diantar',
         ]);
         $userDetails = [
             'name' => $request->nama,
-            'email' => $request->email,
             'phone' => $request->notelp,
             'address' => $request->alamat,
             'pickup_method' => $request->pickup_method,
@@ -110,7 +117,6 @@ class OrderController extends Controller
 
         $order = new Order();
         $order->user_name = $userDetails['name'];
-        $order->email = $userDetails['email'];
         $order->phone = $userDetails['phone'];
         $order->address = $userDetails['address'];
         $order->pickup_method = $userDetails['pickup_method'];
@@ -140,7 +146,6 @@ class OrderController extends Controller
     public function successPage()
     {
         $orderCode = session()->get('order_code');
-        session()->flush();
         return view('success', compact('orderCode'));
     }
 
@@ -152,4 +157,92 @@ class OrderController extends Controller
         // Redirect ke halaman tertentu, misalnya ke halaman utama
         return redirect('/shop')->with('message', 'Session berhasil dihapus.');
     }
+    public function updateOrderWithProducts(Request $request, $id)
+{
+    $order = Order::with('products')->findOrFail($id);
+
+    // Validasi data order
+    $request->validate([
+        'user_name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|string|max:15',
+        'address' => 'required|string|max:255',
+        'pickup_method' => 'required|in:ambil_sendiri,diantar',
+        'total' => 'required|numeric|min:0',
+    ]);
+
+    // Update data order
+    $order->update([
+        'user_name' => $request->user_name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'address' => $request->address,
+        'pickup_method' => $request->pickup_method,
+        'total' => $request->total,
+    ]);
+
+    // Validasi dan update produk
+    foreach ($request->products as $productId => $productData) {
+        $product = $order->products()->findOrFail($productId);
+        $product->update([
+            'product_name' => $productData['product_name'],
+            'price' => $productData['price'],
+            'quantity' => $productData['quantity'],
+            'note' => $productData['note'] ?? null,
+        ]);
+    }
+
+    return redirect()->route('admin.orders.index')->with('success', 'Order and products updated successfully.');
 }
+public function removeItem(Request $request)
+{
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$request->product_id])) {
+        unset($cart[$request->product_id]);
+    }
+
+    session()->put('cart', $cart);
+
+    return redirect()->route('order.viewCart')->with('success', 'Item berhasil dihapus dari keranjang.');
+}
+public function printReceipt($orderId)
+{
+    $order = Order::with('products')->findOrFail($orderId);
+
+    return view('admin.receipt', compact('order'));
+}
+
+public function incomeReport(Request $request)
+{
+    $month = $request->input('month', Carbon::now()->format('m')); // Default bulan ini
+    $year = $request->input('year', Carbon::now()->format('Y'));   // Default tahun ini
+
+    // Total pemasukan per bulan
+    $orders = Order::whereMonth('created_at', $month)
+        ->whereYear('created_at', $year)
+        ->get();
+
+    $totalIncome = $orders->sum('total');
+
+    // Rekap jumlah produk yang terjual
+    $products = [];
+    foreach ($orders as $order) {
+        foreach ($order->products as $product) {
+            if (!isset($products[$product->product_name])) {
+                $products[$product->product_name] = 0;
+            }
+            $products[$product->product_name] += $product->quantity;
+        }
+    }
+
+    // Sorting produk berdasarkan jumlah terjual
+    arsort($products);
+
+    return view('admin.income-report', compact('totalIncome', 'products', 'month', 'year'));
+}
+
+
+}
+
+

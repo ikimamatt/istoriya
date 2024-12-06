@@ -162,13 +162,13 @@
             <div class="col-sm-6 col-md-4 p-b-40 text-center"> <!-- Tambahkan text-center di sini -->
                 <div class="blog-item">
                     <div class="hov-img0">
-                        <a href="blog-detail.html">
+                        <a href="#">
                             <img src="assets/images/banner/sertifikasi-01.png" alt="IMG-BLOG" class="img-fluid">
                         </a>
                     </div>
                     <div class="p-t-15">
                         <h4 class="p-b-12">
-                            <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+                            <a href="#" class="mtext-101 cl2 hov-cl1 trans-04">
                                 Lampiran Sertifikasi Halal
                             </a>
                         </h4>
@@ -182,13 +182,13 @@
             <div class="col-sm-6 col-md-4 p-b-40 text-center"> <!-- Tambahkan text-center di sini -->
                 <div class="blog-item">
                     <div class="hov-img0">
-                        <a href="blog-detail.html">
+                        <a href="#">
                             <img src="assets/images/banner/sertifikasi-02.png" alt="IMG-BLOG" class="img-fluid">
                         </a>
                     </div>
                     <div class="p-t-15">
                         <h4 class="p-b-12">
-                            <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+                            <a href="#" class="mtext-101 cl2 hov-cl1 trans-04">
                                 Lampiran Sertifikasi Halal
                             </a>
                         </h4>

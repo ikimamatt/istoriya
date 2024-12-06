@@ -63,11 +63,25 @@
                                     <td class="column-4 text-center">{{ $item['quantity'] }}</td>
                                     <td class="column-5">Rp{{ number_format($item['price'] * $item['quantity'], 0, ',', '.') }}</td>
                                     <td class="column-6">{{ $item['note'] ?? 'Tidak ada' }}</td>
+                                    <td class="column-7">
+                                        <button
+                                            class="btn btn-danger btn-sm btn-delete"
+                                            data-product-id="{{ $item['id'] }}"
+                                            data-product-name="{{ $item['name'] }}">
+                                            Hapus
+                                        </button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </table>
-						</div>
+                            <br>
 
+						</div>
+                        <a href="{{ route('shop') }}" class="p-t-27">
+                            <button  class="flex-c-m btn btn-sm stext-101 cl0 size-116 bg1 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                kembali
+                            </button>
+                        </a>
 
 					</div>
 				</div>
@@ -91,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+                            {{-- <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
                                         Email:
@@ -101,7 +115,7 @@
                                 <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
                                     <input required class="stext-111 cl8 plh3 size-111 p-lr-15" type="email" name="email" placeholder="Masukkan Email Anda">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
@@ -114,17 +128,8 @@
                                 </div>
                             </div>
 
-                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
-                                <div class="size-208">
-                                    <span class="stext-110 cl2">
-                                        Alamat:
-                                    </span>
-                                </div>
 
-                                <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
-                                    <input required class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="alamat" placeholder="Masukkan Alamat Anda">
-                                </div>
-                            </div>
+
 
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
@@ -141,6 +146,25 @@
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
+                            </div>
+                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
+                                <div class="size-208">
+                                    <span class="stext-110 cl2">
+                                        Alamat:
+                                    </span>
+                                </div>
+
+                                <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
+                                    <textarea
+                                        required
+                                        class="stext-111 cl8 plh3 size-111 p-lr-15"
+                                        name="alamat"
+                                        rows="3"
+                                        placeholder="Masukkan Alamat Anda"></textarea>
+                                </div>
+                                <small id="emailHelp" class="form-text text-danger">
+                                    Note : Apabila Pengantaran berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
+                                </small>
                             </div>
 
                             <div class="flex-w flex-t p-t-27 p-b-33">
@@ -171,6 +195,56 @@
 			</div>
 		</div>
 	</form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const productId = this.dataset.productId;
+                    const productName = this.dataset.productName;
+
+                    // SweetAlert Confirmation
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: `Item "${productName}" akan dihapus dari keranjang.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Buat form dan submit secara dinamis
+                            const form = document.createElement('form');
+                            form.method = 'POST';
+                            form.action = '{{ route("cart.removeItem") }}';
+
+                            // Tambahkan CSRF token
+                            const csrfInput = document.createElement('input');
+                            csrfInput.type = 'hidden';
+                            csrfInput.name = '_token';
+                            csrfInput.value = '{{ csrf_token() }}';
+                            form.appendChild(csrfInput);
+
+                            // Tambahkan product_id ke form
+                            const productInput = document.createElement('input');
+                            productInput.type = 'hidden';
+                            productInput.name = 'product_id';
+                            productInput.value = productId;
+                            form.appendChild(productInput);
+
+                            // Tambahkan form ke body dan submit
+                            document.body.appendChild(form);
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
 
 

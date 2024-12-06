@@ -55,6 +55,14 @@ route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     })->name('editcompro');
 
     Route::resource('profiles', ProfileController::class);
+    Route::put('/admin/orders/{order}', [OrderController::class, 'updateOrderWithProducts'])->name('orders.updateWithProducts');
+
+    Route::get('/admin/orders/{id}/receipt', [OrderController::class, 'printReceipt'])->name('orders.receipt');
+    Route::get('/admin/income-report', [OrderController::class, 'incomeReport'])->name('incomeReport');
+
+
+
+
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -64,13 +72,13 @@ Route::post('/add-to-cart', [OrderController::class, 'addToCart'])->name('order.
 Route::get('/shopping-cart', [OrderController::class, 'viewCart'])->name('order.viewCart');
 
 
-
-
 Route::post('/save-order-details', [OrderController::class, 'saveOrderDetails'])->name('order.saveOrderDetails');
 Route::get('/payment', [OrderController::class, 'paymentPage'])->name('order.paymentPage');
 Route::post('/process-payment', [OrderController::class, 'processPayment'])->name('order.processPayment');
 Route::get('/success', [OrderController::class, 'successPage'])->name('order.successPage');
 
 Route::get('/session-clear', [OrderController::class, 'clearSession'])->name('session.clear');
+Route::post('/cart/remove', [OrderController::class, 'removeItem'])->name('cart.removeItem');
+
 
 
