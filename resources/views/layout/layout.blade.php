@@ -52,9 +52,14 @@ img {
     visibility: visible;
     z-index: 9999;
 }
-.icon-large i {
-    font-size: 2.5rem; /* Atur ukuran sesuai kebutuhan, misalnya 2.5rem */
+.icon-large {
+    font-size: 1.5rem; /* Atur ukuran ikon di sini, misalnya 3rem */
 }
+
+.swal2-container {
+    z-index: 9999 !important;
+}
+
 </style>
 </head>
 
@@ -92,7 +97,7 @@ img {
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
                         <a href="{{ route('order.viewCart') }}">
-                            <i class="zmdi zmdi-shopping-cart"></i>
+                            <i class="zmdi zmdi-shopping-cart icon-large"></i>
                         </a>
                     </div>
 

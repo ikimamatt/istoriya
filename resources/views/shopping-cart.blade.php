@@ -124,10 +124,17 @@
                                 </div>
 
                                 <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
-                                    <input required class="stext-111 cl8 plh3 size-111 p-lr-15" type="number" name="notelp" placeholder="Masukkan Nomor Telepon Anda">
+                                    <input
+                                        required
+                                        class="stext-111 cl8 plh3 size-111 p-lr-15"
+                                        type="number"
+                                        name="notelp"
+                                        placeholder="Masukkan Nomor Telepon Anda"
+                                        maxlength="13"
+                                        oninput="this.value=this.value.slice(0,13)"
+                                    >
                                 </div>
                             </div>
-
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">

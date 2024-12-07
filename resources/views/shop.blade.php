@@ -139,7 +139,12 @@
                                                             <i class="fs-16 zmdi zmdi-minus"></i>
                                                         </button>
 
-                                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1" min="1">
+                                                        <input class="mtext-104 cl3 txt-center num-product"
+                                                               type="number"
+                                                               name="quantity"
+                                                               value="1"
+                                                               min="1"
+                                                               data-stock="{{ $product->stock }}">
 
                                                         <button type="button" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                             <i class="fs-16 zmdi zmdi-plus"></i>
@@ -230,6 +235,50 @@
                 });
             });
         });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const btnIncrease = document.querySelectorAll('.btn-num-product-up');
+    const btnDecrease = document.querySelectorAll('.btn-num-product-down');
+
+    btnIncrease.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.parentElement.querySelector('.num-product');
+            let currentValue = parseInt(input.value, 10) || 0;
+            const maxStock = parseInt(input.getAttribute('data-stock'), 10);
+
+            // Tambah 1 hanya jika belum mencapai stok maksimum
+            if (currentValue < maxStock) {
+                input.value = currentValue + 1;
+            } else {
+                // SweetAlert dengan z-index di atas modal
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Stok Habis!',
+                    text: 'Jumlah tidak dapat melebihi stok yang tersedia.',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        container: 'swal2-container'
+                    }
+                });
+            }
+        });
+    });
+
+    btnDecrease.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.parentElement.querySelector('.num-product');
+            let currentValue = parseInt(input.value, 10) || 0;
+
+            // Kurangi 1 jika lebih besar dari 1
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        });
+    });
+});
+
     </script>
 
 
