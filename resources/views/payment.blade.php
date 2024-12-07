@@ -34,7 +34,7 @@
             @csrf
             <div style="margin-bottom: 20px;">
                 <label style="display: block; color: #666; font-weight: bold; margin-bottom: 10px;">Unggah Bukti Pembayaran</label>
-                <input required type="file" name="payment_proof" style="width: 100%; color: #333; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 5px; padding: 10px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <input required type="file" name="payment_proof" accept="image/*" style="width: 100%; color: #333; background-color: #f9f9f9; border: 1px solid #ccc; border-radius: 5px; padding: 10px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);">
                 <button type="submit" style="width: 100%; background-color: #333; color: white; padding: 15px; border-radius: 10px; margin-top: 20px; cursor: pointer;">Kirim</button>
             </div>
         </form>

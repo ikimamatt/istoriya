@@ -11,54 +11,54 @@
                     </div>
 
                     <div class="table-responsive" data-simplebar>
-                        <table class="table table-borderless align-middle text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">ID Produk</th>
-                                    <th scope="col" class="text-center">Nama</th>
-                                    <th scope="col" class="text-center">Harga</th>
-                                    <th scope="col" class="text-center">Kategori</th>
-                                    <th scope="col" class="text-center">Stok</th>
-                                    <th scope="col" class="text-center">Preoder</th>
-                                    <th scope="col" class="text-center">Gambar</th>
-                                    <th scope="col" class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($products as $product)
-                                <tr>
-                                    <td class="text-center">{{ $product->product_id }}</td>
-                                    <td class="text-center">{{ $product->name }}</td>
-                                    <td class="text-center">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
-                                    <td class="text-center">{{ $product->categories }}</td>
-                                    <td class="text-center">{{ $product->stock }}</td>
-                                    <td class="text-center">{{ $product->preorder }}</td>
-                                    <td class="text-center">
-                                        @if($product->image_path)
-                                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product Image" style="width: 80px; height: 80px;">
-                                        @else
-                                        <span>Tidak Ada Gambar</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <!-- Tombol Edit untuk Membuka Modal -->
-                                        <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $product }})">
-                                            <i class="bi bi-pencil-fill"></i> Edit
-                                        </button>
-
-                                        <!-- Tombol Hapus dengan Konfirmasi SweetAlert -->
-                                        <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $product->id }})">
-                                            <i class="bi bi-trash-fill"></i> Hapus
-                                        </button>
-                                        <form id="delete-form-{{ $product->id }}" action="{{ route('admin.produk.delete', $product->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <!-- Table -->
+                        <div class="table-responsive" data-simplebar>
+                            <table id="productTable" class="table table-borderless align-middle text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">ID Produk</th>
+                                        <th scope="col" class="text-center">Nama</th>
+                                        <th scope="col" class="text-center">Harga</th>
+                                        <th scope="col" class="text-center">Kategori</th>
+                                        <th scope="col" class="text-center">Stok</th>
+                                        <th scope="col" class="text-center">Preorder</th>
+                                        <th scope="col" class="text-center">Gambar</th>
+                                        <th scope="col" class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($products as $product)
+                                    <tr>
+                                        <td class="text-center">{{ $product->product_id }}</td>
+                                        <td class="text-center">{{ $product->name }}</td>
+                                        <td class="text-center">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+                                        <td class="text-center">{{ $product->categories }}</td>
+                                        <td class="text-center">{{ $product->stock }}</td>
+                                        <td class="text-center">{{ $product->preorder }}</td>
+                                        <td class="text-center">
+                                            @if($product->image_path)
+                                            <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product Image" style="width: 80px; height: 80px;">
+                                            @else
+                                            <span>Tidak Ada Gambar</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $product }})">
+                                                <i class="bi bi-pencil-fill"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $product->id }})">
+                                                <i class="bi bi-trash-fill"></i> Hapus
+                                            </button>
+                                            <form id="delete-form-{{ $product->id }}" action="{{ route('admin.produk.delete', $product->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="productImage" class="form-label">Gambar Produk</label>
-                        <input class="form-control" type="file" id="productImage" name="image" accept="image/*">
+                        <input class="form-control" accept="image/*" onchange="validateFile(this)" type="file" id="productImage" name="image" accept="image/*">
                         <small class="text-muted">Kosongkan jika tidak ingin mengganti gambar.</small>
                     </div>
                 </div>
@@ -124,6 +124,41 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        // Initialize DataTables
+        $('#productTable').DataTable({
+            "paging": true,  // Enable pagination
+            "searching": true, // Enable searching
+            "ordering": true, // Enable sorting
+            "info": true, // Show table information (e.g., "Showing 1 to 10 of 50 entries")
+            "lengthChange": true, // Enable page size change
+            "autoWidth": false // Disable automatic column width adjustment
+        });
+    });
+</script>
+
+
+<script>
+    function validateFile(input) {
+        const file = input.files[0];
+        const fileType = file ? file.type : '';
+
+        // Check if the file is an image
+        if (!fileType.startsWith('image/')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'File yang dipilih bukan gambar',
+                text: 'Silakan pilih file gambar (.jpg, .jpeg, .png) sebagai bukti pembayaran.',
+                confirmButtonText: 'Ok'
+            });
+
+            // Clear the input so that the user can select a valid file
+            input.value = '';
+        }
+    }
+</script>
 
 <!-- Skrip untuk Modal dan Konfirmasi Hapus -->
 <script>
