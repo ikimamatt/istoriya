@@ -46,7 +46,7 @@ class OrderController extends Controller
           $order = Order::findOrFail($id);
           $order->delete();
 
-          return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully');
+          return redirect()->route('admin.orders.index')->with('success', 'Order berhasil dihapus!');
       }
     public function addToCart(Request $request)
     {

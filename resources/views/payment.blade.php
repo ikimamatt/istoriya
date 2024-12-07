@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('home')
-    <div  style="background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 15px; margin: 0 auto; margin-bottom: 40px; margin-top: 120px; padding: 20px; width: 50%;">
+    <div style="background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 15px; margin: 0 auto; margin-bottom: 40px; margin-top: 120px; padding: 20px; width: 50%;">
         <h2 style="font-size: 24px; font-weight: bold; text-align: center; color: #333; margin-bottom: 20px;">Selesaikan Pembayaran Anda</h2>
         <hr style="border-color: #666; margin-bottom: 20px;">
         <div style="margin-bottom: 20px;">
@@ -14,22 +14,21 @@
 
             <div style="text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 10px; background-color: white; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 18px; color: #333; margin-bottom: 10px;">Bank Transfer</p>
-                <img src="assets/images/payment/mandiri.png" alt="Mandiri Logo" style="height: 100px; margin-bottom: 10px;">
+                <img src="assets/images/payment/mandiri.png" alt="Mandiri Logo" style="height: 100px; margin-bottom: 10px; display: block; margin: 0 auto;">
                 <span style="font-weight: bold; font-size: 18px; color: #555; display: block; margin-top: 10px;">137 00 143 8742 3</span>
             </div>
 
             <div style="text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 10px; background-color: white; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 18px; color: #333; margin-bottom: 10px;">Bank Transfer</p>
-                <img src="assets/images/payment/bsi.png" alt="BSI Logo" style="height: 100px; margin-bottom: 10px;">
+                <img src="assets/images/payment/bsi.png" alt="BSI Logo" style="height: 100px; margin-bottom: 10px; display: block; margin: 0 auto;">
                 <span style="font-weight: bold; font-size: 18px; color: #555; display: block; margin-top: 10px;">726 108 5555</span>
             </div>
 
             <div style="text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 10px; background-color: white; margin-bottom: 20px;">
                 <p style="font-weight: bold; font-size: 18px; color: #333; margin-bottom: 10px;">Bank Transfer</p>
-                <img src="assets/images/payment/bca.png" alt="BCA Logo" style="height: 100px; margin-bottom: 10px;">
+                <img src="assets/images/payment/bca.png" alt="BCA Logo" style="height: 100px; margin-bottom: 10px; display: block; margin: 0 auto;">
                 <span style="font-weight: bold; font-size: 18px; color: #555; display: block; margin-top: 10px;">1913072506</span>
             </div>
-
         </div>
         <form action="{{ route('order.processPayment') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -41,5 +40,3 @@
         </form>
     </div>
 @endsection
-
-

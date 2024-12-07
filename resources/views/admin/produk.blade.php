@@ -17,8 +17,8 @@
                                     <th scope="col" class="text-center">ID Produk</th>
                                     <th scope="col" class="text-center">Nama</th>
                                     <th scope="col" class="text-center">Harga</th>
-                                    <th scope="col" class="text-center">Categories</th>
-                                    <th scope="col" class="text-center">Stock</th>
+                                    <th scope="col" class="text-center">Kategori</th>
+                                    <th scope="col" class="text-center">Stok</th>
                                     <th scope="col" class="text-center">Preoder</th>
                                     <th scope="col" class="text-center">Gambar</th>
                                     <th scope="col" class="text-center">Aksi</th>
@@ -87,14 +87,14 @@
                         <input type="text" class="form-control" id="productPrice" name="price" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productPrice" class="form-label">Jumlah Stock</label>
+                        <label for="productPrice" class="form-label">Jumlah Stok</label>
                         <input required type="number" name="stock" class="form-control" id="productStock" placeholder="Masukkan jumlah stock" required>
                     </div>
                     <div class="mb-3">
                         <label for="productPrice" class="form-label">Preorder</label>
                         <select class="form-select form-select-sm" id="productPreorder" name="preorder" aria-label="Small select example">
-                          <option value="ready">Ready</option>
-                          <option value="not_ready">Not_ready</option>
+                            <option value="ada">Ada</option>
+                            <option value="tidak_ada">tidak ada</option>
                         </select>
                     </div>
 
@@ -152,7 +152,8 @@
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, hapus!'
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal' // Teks tombol batal diubah menjadi "Batal"
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById(`delete-form-${productId}`).submit();

@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function showShop()
     {
         // Mengambil produk dengan field 'preorder' bernilai 'ready'
-        $products = Product::where('preorder', 'ready')->get();
+        $products = Product::where('preorder', 'ada')->get();
         return view('shop', compact('products'));
     }
     public function addToCart(Request $request)

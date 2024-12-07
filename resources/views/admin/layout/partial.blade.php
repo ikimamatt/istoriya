@@ -79,7 +79,7 @@ html, body {
           <ul id="sidebarnav" class="mb-4 pb-2">
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">Home</span>
+              <span class="hide-menu">Beranda</span>
             </li>
             <li class="sidebar-item">
               <a
@@ -289,7 +289,7 @@ html, body {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Logout',
+        confirmButtonText: 'Ya, Keluar',
         cancelButtonText: 'Batal'
       }).then((result) => {
         if (result.isConfirmed) {
