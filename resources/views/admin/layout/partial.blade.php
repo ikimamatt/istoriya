@@ -67,7 +67,6 @@ html, body {
             <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center text-nowrap logo-img ms-0 ms-md-1">
                 <img src="{{ asset('assets/images/logos/logo1.png') }}" width="30" alt="Logo">
                 <h2 class="ms-3 mb-0 text-bold">Istoriya Cafe</h2>
-                {{-- <img src="{{ asset("assets/images/logos/dark-logo.svg") }}" width="180" alt=""> --}}
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
