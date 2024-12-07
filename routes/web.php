@@ -38,21 +38,21 @@ route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/admin/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::post('/admin/orders/{id}/update', [OrderController::class, 'update'])->name('orders.update');
     Route::delete('/admin/orders/{id}/delete', [OrderController::class, 'destroy'])->name('orders.delete');
-    Route::get('/datasales', function () {
-        return view('admin.datasales');  // Menampilkan halaman produk.blade.php di folder admin
-    })->name('datasales');
+    // Route::get('/datasales', function () {
+    //     return view('admin.datasales');  // Menampilkan halaman produk.blade.php di folder admin
+    // })->name('datasales');
 
-    Route::get('/detailsales', function () {
-        return view('admin.detailsales');  // Menampilkan halaman produk.blade.php di folder admin
-    })->name('detailsales');
+    // Route::get('/detailsales', function () {
+    //     return view('admin.detailsales');  // Menampilkan halaman produk.blade.php di folder admin
+    // })->name('detailsales');
 
-    Route::get('/readcompro', function () {
-        return view('admin.readcompro');  // Menampilkan halaman produk.blade.php di folder admin
-    })->name('readcompro');
+    // Route::get('/readcompro', function () {
+    //     return view('admin.readcompro');  // Menampilkan halaman produk.blade.php di folder admin
+    // })->name('readcompro');
 
-    Route::get('/editcompro', function () {
-        return view('admin.editcompro');  // Menampilkan halaman produk.blade.php di folder admin
-    })->name('editcompro');
+    // Route::get('/editcompro', function () {
+    //     return view('admin.editcompro');  // Menampilkan halaman produk.blade.php di folder admin
+    // })->name('editcompro');
 
     Route::resource('profiles', ProfileController::class);
     Route::put('/admin/orders/{order}', [OrderController::class, 'updateOrderWithProducts'])->name('orders.updateWithProducts');
