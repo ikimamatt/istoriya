@@ -54,10 +54,10 @@
                             <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#orderModal{{ $order->id }}">
                                 Lihat/Edit
                             </button>
-                            <form action="{{ route('admin.orders.delete', $order->id) }}" method="POST" style="display:inline-block;">
+                            <form action="{{ route('admin.orders.delete', $order->id) }}" method="POST" class="d-inline-block" id="deleteForm{{ $order->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="button" class="btn btn-danger btn-sm delete-btn" data-id="{{ $order->id }}">Hapus</button>
                             </form>
                         </td>
 
@@ -164,4 +164,29 @@
   </div>
 </div>
 </div>
+<script>
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            const orderId = this.getAttribute('data-id');
+
+            // Show SweetAlert2 confirmation dialog
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If confirmed, submit the form
+                    document.getElementById('deleteForm' + orderId).submit();
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

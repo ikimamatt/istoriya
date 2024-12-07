@@ -22,7 +22,8 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="90" alt="">
+                  {{-- <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="50" alt=""> --}}
+                  <img src="{{ asset('assets/images/logos/logo1.png') }}" width="90" alt="Logo">
                 </a>
                 <h3 class="text-center text-bold">Istoriya Cafe Admin</h3><br><br>
                 <form action="{{ route('login_proses') }}" method="POST">
