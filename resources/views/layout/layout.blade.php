@@ -52,6 +52,14 @@ img {
     visibility: visible;
     z-index: 9999;
 }
+.icon-large {
+    font-size: 1.5rem; /* Atur ukuran ikon di sini, misalnya 3rem */
+}
+
+.swal2-container {
+    z-index: 9999 !important;
+}
+
 </style>
 </head>
 
@@ -89,7 +97,7 @@ img {
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
                         <a href="{{ route('order.viewCart') }}">
-                            <i class="zmdi zmdi-shopping-cart"></i>
+                            <i class="zmdi zmdi-shopping-cart icon-large"></i>
                         </a>
                     </div>
 
@@ -106,12 +114,12 @@ img {
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10  js-show-cart" >
-					<a href="{{ route('order.viewCart') }}">
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 js-show-cart icon-large">
+                    <a href="{{ route('order.viewCart') }}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </a>
-				</div>
-			</div>
+                </div>
+            </div>
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -157,7 +165,7 @@ img {
 			<div class="row">
 				<div class="col-sm-6 col-lg-6 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Categories
+						Kategori
 					</h4>
 
 					<ul>
@@ -231,7 +239,7 @@ img {
 
 				<div class="col-sm-6 col-lg-6 p-b-50">
 					<h4 class="stext-301 cl7 p-b-30">
-						GET IN TOUCH
+						kontak kami
 					</h4>
 
 					<p class="stext-107 cl7 size-201">

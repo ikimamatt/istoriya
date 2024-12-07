@@ -124,13 +124,17 @@
                                 </div>
 
                                 <div class="flex-grow bor8 bg0 m-b-12" style="margin-left: 10px;">
-                                    <input required class="stext-111 cl8 plh3 size-111 p-lr-15" type="number" name="notelp" placeholder="Masukkan Nomor Telepon Anda">
+                                    <input
+                                        required
+                                        class="stext-111 cl8 plh3 size-111 p-lr-15"
+                                        type="number"
+                                        name="notelp"
+                                        placeholder="Masukkan Nomor Telepon Anda"
+                                        maxlength="13"
+                                        oninput="this.value=this.value.slice(0,13)"
+                                    >
                                 </div>
                             </div>
-
-
-
-
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
@@ -138,14 +142,14 @@
                                     </span>
                                 </div>
 
-                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" required name="pickup_method">
-                                        <option>Pilih Opsi</option>
-                                        <option value="ambil_sendiri">Ambil Sendiri</option>
-                                        <option value="diantar">Diantar</option>
+                                <div class="rs1-select2 bg0 m-b-12 m-t-9">
+                                    <select class="js-select" required name="pickup_method">
+                                      <option>Pilih Opsi</option>
+                                      <option value="ambil_sendiri">Ambil Sendiri</option>
+                                      <option value="diantar">Diantar</option>
                                     </select>
                                     <div class="dropDownSelect2"></div>
-                                </div>
+                                  </div>
                             </div>
                             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
                                 <div class="size-208">
@@ -163,7 +167,7 @@
                                         placeholder="Masukkan Alamat Anda"></textarea>
                                 </div>
                                 <small id="emailHelp" class="form-text text-danger">
-                                    Note : Apabila Pengantaran berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
+                                    Catatan : Apabila Pengantaran berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
                                 </small>
                             </div>
 

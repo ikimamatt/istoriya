@@ -46,7 +46,7 @@ class ProductController extends Controller
             'preorder' => $request->preorder,
         ]);
 
-        return redirect()->route('admin.produk')->with('success', 'Product created successfully');
+        return redirect()->route('admin.produk')->with('success', 'Produk Berhasil Ditambahkan!');
     }
 
     // Show the form for editing the specified product
@@ -102,6 +102,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('admin.produk')->with('success', 'Product deleted successfully');
+        return redirect()->route('admin.produk')->with('success', 'Produk Berhasil Dihapus!');
     }
 }

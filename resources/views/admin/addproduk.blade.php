@@ -21,7 +21,7 @@
               </div>
 
               <div class="mb-3">
-                  <label for="productPrice" class="form-label">Jumlah Stock</label>
+                  <label for="productPrice" class="form-label">Jumlah Stok</label>
                   <input required type="number" name="stock" class="form-control" id="productPrice" placeholder="Masukkan harga produk" required>
                 </div>
 
@@ -39,8 +39,8 @@
               <div class="mb-3">
                   <label for="productPrice" class="form-label">Preorder</label>
                   <select class="form-select form-select-sm" name="preorder" aria-label="Small select example">
-                    <option value="ready">Ready</option>
-                    <option value="not_ready">Not_ready</option>
+                    <option value="ada">Ada</option>
+                    <option value="tidak_ada">tidak ada</option>
                   </select>
               </div>
 

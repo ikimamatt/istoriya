@@ -46,7 +46,7 @@ class OrderController extends Controller
           $order = Order::findOrFail($id);
           $order->delete();
 
-          return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully');
+          return redirect()->route('admin.orders.index')->with('success', 'Order berhasil dihapus!');
       }
     public function addToCart(Request $request)
     {
@@ -115,6 +115,7 @@ class OrderController extends Controller
             return redirect()->route('order.viewCart')->with('error', 'Keranjang atau detail pengguna tidak valid.');
         }
 
+        // Buat order baru
         $order = new Order();
         $order->user_name = $userDetails['name'];
         $order->phone = $userDetails['phone'];
@@ -125,21 +126,37 @@ class OrderController extends Controller
         $order->save();
 
         foreach ($cart as $item) {
+            // Buat hubungan produk ke dalam order
             $order->products()->create([
                 'product_name' => $item['name'],
                 'price' => $item['price'],
                 'quantity' => $item['quantity'],
                 'note' => $item['note'],
             ]);
+
+            // Cari produk di database dan kurangi stoknya
+            $product = \App\Models\Product::find($item['id']);
+            if ($product) {
+                if ($product->stock >= $item['quantity']) {
+                    $product->stock -= $item['quantity'];
+                    $product->save();
+                } else {
+                    // Jika stok tidak mencukupi, batalkan pesanan
+                    return redirect()->route('order.viewCart')->with('error', "Stok produk {$product->name} tidak mencukupi.");
+                }
+            }
         }
 
+        // Simpan bukti pembayaran jika ada
         if ($request->hasFile('payment_proof')) {
             $path = $request->file('payment_proof')->store('payments', 'public');
             $order->payment_proof = $path;
             $order->save();
         }
 
+        // Bersihkan session
         session()->forget(['cart', 'user_details']);
+
         return redirect()->route('order.successPage')->with('order_code', $order->order_code);
     }
 

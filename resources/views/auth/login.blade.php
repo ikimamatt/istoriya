@@ -24,7 +24,7 @@
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{ asset('assets/images/logos/logo1.jpg') }}" width="90" alt="">
                 </a>
-                <h3 class="text-center text-bold">Istoriya Cafe Admin</h3>
+                <h3 class="text-center text-bold">Istoriya Cafe Admin</h3><br><br>
                 <form action="{{ route('login_proses') }}" method="POST">
                   @csrf
                   <div class="mb-3">
@@ -59,7 +59,7 @@
   </div>
   <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-  
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if ($message = Session::get('success'))
 <script>
