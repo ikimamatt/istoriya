@@ -8,6 +8,8 @@
   <link rel="shortcut icon" type="image/png" href="{{ asset("assets/images/logos/favicon.png") }}" />
   <link rel="stylesheet" href="{{ asset("assets/css/styles.min.css") }}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
 </head>
 <style>
     .card-body {
@@ -259,7 +261,7 @@ html, body {
 
 
 
-
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
@@ -268,13 +270,15 @@ html, body {
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- DataTables CSS -->
-<link href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" rel="stylesheet">
-
-<!-- DataTables JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+      $(document).ready(function () {
+        $('#dataTable').DataTable(); // ID From dataTable
+        $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+      });
+    </script>
 
 @if(session()->has('success'))
 <script>

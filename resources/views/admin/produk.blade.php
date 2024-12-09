@@ -13,7 +13,7 @@
                     <div class="table-responsive" data-simplebar>
                         <!-- Table -->
                         <div class="table-responsive" data-simplebar>
-                            <table id="productTable" class="table table-borderless align-middle text-nowrap">
+                            <table id="dataTableHover" class="table table-borderless align-middle text-nowrap">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center">ID Produk</th>
@@ -58,6 +58,21 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <script>
+                                $(function() {
+                                    $('#users-table').DataTable({
+                                        processing: true,
+                                        serverSide: true,
+                                        ajax: '/data',
+                                        columns: [
+                                            { data: 'name', name: 'nama' },
+                                            { data: 'email', name: 'email' },
+                                            { data: 'created_at', name: 'created_at' },
+                                            { data: 'updated_at', name: 'updated_at' }
+                                        ]
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -102,12 +117,16 @@
                         <label for="productCategory" class="form-label">Kategori</label>
                         <select class="form-select form-select-sm" name="categories" id="productCategory" required>
                             <option value="" disabled>Pilih kategori produk</option>
-                            <option value="coffee">Coffee</option>
-                            <option value="coffe_moctail">Coffee Moctail</option>
-                            <option value="fruit_tea">Fruit Tea</option>
-                            <option value="milk_based">Milk Based</option>
-                            <option value="signature">Signature</option>
-                            <option value="pastry_dessert">Pastry Dessert</option>
+                            <option value="coffee">coffee</option>
+                            <option value="coffe_moctail">coffe_moctail</option>
+                            <option value="fruit_tea">fruit_tea</option>
+                            <option value="milk_based">milk_based</option>
+                            <option value="signature">signature</option>
+                            <option value="donat">donat</option>
+                            <option value="brownies">brownies</option>
+                            <option value="cheesecake">cheesecake</option>
+                            <option value="Milkbun">Milkbun</option>
+                            <option value="Pudding">Pudding</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -125,7 +144,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     $(document).ready(function() {
         // Initialize DataTables
         $('#productTable').DataTable({
@@ -137,8 +156,22 @@
             "autoWidth": false // Disable automatic column width adjustment
         });
     });
-</script>
+</script> --}}
 
+<script src="{{ asset('assets2/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('assets2/js/ruang-admin.min.js') }}"></script>
+<!-- Page level plugins -->
+<script src="{{ asset('assets2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page level custom scripts -->
+<script>
+  $(document).ready(function () {
+    $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+  });
+</script>
 
 <script>
     function validateFile(input) {

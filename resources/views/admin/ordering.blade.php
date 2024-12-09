@@ -30,7 +30,7 @@
         </div>
 
         <div class="table-responsive" data-simplebar>
-          <table class="table table-borderless align-middle text-nowrap">
+          <table  id="dataTableHover" class="table table-borderless align-middle text-nowrap">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -38,6 +38,7 @@
                 <th scope="col">Pelanggan</th>
                 <th scope="col">Total</th>
                 <th scope="col">Metode Pengambilan</th>
+                <th scope="col">tanggal</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -49,6 +50,8 @@
                         <td class="fs-3 fw-normal mb-0">{{ $order->user_name }}</td>
                         <td class="fs-3 fw-normal mb-0">Rp{{ number_format($order->total, 0, ',', '.') }}</td>
                         <td class="fs-3 fw-normal mb-0">{{ ucfirst($order->pickup_method) }}</td>
+                        <td class="fs-3 fw-normal mb-0">{{ $order->created_at }}</td>
+
                         <td class="fs-3 fw-normal mb-0">
                             <!-- Button to trigger modal -->
                             <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#orderModal{{ $order->id }}">

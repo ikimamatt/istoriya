@@ -28,12 +28,17 @@
               <div class="mb-3">
                 <label for="productPrice" class="form-label">Kategori</label>
                 <select required class="form-select form-select-sm" name="categories" aria-label="Small select example">
-                  <option value="coffee">coffee</option>
+                    <option value="" disabled>Pilih kategori produk</option>
+                    <option value="coffee">coffee</option>
                   <option value="coffe_moctail">coffe_moctail</option>
                   <option value="fruit_tea">fruit_tea</option>
                   <option value="milk_based">milk_based</option>
                   <option value="signature">signature</option>
-                  <option value="pastry_dessert">pastry_dessert</option>
+                  <option value="donat">donat</option>
+                  <option value="brownies">brownies</option>
+                  <option value="cheesecake">cheesecake</option>
+                  <option value="Milkbun">Milkbun</option>
+                  <option value="Pudding">Pudding</option>
                 </select>
               </div>
               <div class="mb-3">

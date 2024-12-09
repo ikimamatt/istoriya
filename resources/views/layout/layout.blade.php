@@ -33,6 +33,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets1/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets1/css/main.css') }}">
+
 <!--===============================================================================================-->
 <style>
     .js-modal1 {
@@ -243,7 +244,7 @@ img {
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Ada pertanyaan? hubungi kami di wa <a href="https://wa.me/081346606010">081346606010</a>
+						Ada pertanyaan? hubungi kami di Whatsapp <a href="https://wa.me/081346606010">081346606010</a>
 					</p>
 
 					{{-- <div class="p-t-27">
@@ -268,9 +269,8 @@ img {
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made By Istoria</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made By Istoria</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 			</div>
 		</div>
@@ -396,7 +396,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ asset('assets1/js/main.js') }}"></script>
-
+    <script src="{{ asset('assets2/vendor/isotope.pkgd.min.js') }}"></script>
 
 <!--===============================================================================================-->
 	<script src="{{ asset('assets1/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
@@ -482,6 +482,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ asset('assets1/vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');

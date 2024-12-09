@@ -167,7 +167,7 @@
                                         placeholder="Masukkan Alamat Anda"></textarea>
                                 </div>
                                 <small id="emailHelp" class="form-text text-danger">
-                                    Catatan : Apabila Pengantaran berikan alamat sesuai titik, dan ongkos kirim ditanggung sendiri
+                                    Catatan : Apabila memilih metode pengantaran berikan alamat sesuai titik, dan ongkos kirim ditanggung oleh pembeli
                                 </small>
                             </div>
 
