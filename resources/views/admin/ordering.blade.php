@@ -145,7 +145,7 @@
                                                         </div>
                                                         <div class="col-md-12 mb-3">
                                                             <label for="note_{{ $product->id }}" class="form-label">Catatan</label>
-                                                            <textarea name="products[{{ $product->id }}][note]" id="note_{{ $product->id }}" class="form-control" rows="2">{{ $product->note }}</textarea>
+                                                            <textarea disabled name="products[{{ $product->id }}][note]" id="note_{{ $product->id }}" class="form-control" rows="2">{{ $product->note }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
