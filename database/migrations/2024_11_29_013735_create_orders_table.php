@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('pickup_method');
             $table->decimal('total', 15, 2);
             $table->string('order_code')->unique();
+            $table->string('status');
             $table->string('payment_proof')->nullable();
             $table->timestamps();
         });

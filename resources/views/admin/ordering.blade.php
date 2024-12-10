@@ -39,6 +39,7 @@
                 <th scope="col">Total</th>
                 <th scope="col">Metode Pengambilan</th>
                 <th scope="col">tanggal</th>
+                <th scope="col">status</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -51,6 +52,16 @@
                         <td class="fs-3 fw-normal mb-0">Rp{{ number_format($order->total, 0, ',', '.') }}</td>
                         <td class="fs-3 fw-normal mb-0">{{ ucfirst($order->pickup_method) }}</td>
                         <td class="fs-3 fw-normal mb-0">{{ $order->created_at }}</td>
+                        <td>
+                            <span
+                                class="badge
+                                @if ($order->status == 'Diterima') bg-warning
+                                @elseif ($order->status == 'Diproses') bg-primary
+                                @elseif ($order->status == 'Selesai') bg-success
+                                @endif">
+                                {{ $order->status }}
+                            </span>
+                        </td>
 
                         <td class="fs-3 fw-normal mb-0">
                             <!-- Button to trigger modal -->
@@ -94,6 +105,14 @@
                                                     <select class="form-select" id="pickup_method" name="pickup_method" required>
                                                         <option value="ambil_sendiri" {{ $order->pickup_method == 'ambil_sendiri' ? 'selected' : '' }}>Ambil Sendiri</option>
                                                         <option value="diantar" {{ $order->pickup_method == 'diantar' ? 'selected' : '' }}>Diantar</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="status" class="form-label">Status</label>
+                                                    <select class="form-select" id="status" name="status" required>
+                                                        <option value="Diterima" {{ $order->status == 'Diterima' ? 'selected' : '' }}>Diterima</option>
+                                                        <option value="Diproses" {{ $order->status == 'Diproses' ? 'selected' : '' }}>Diproses</option>
+                                                        <option value="Selesai" {{ $order->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12 mb-3">

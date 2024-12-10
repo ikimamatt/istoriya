@@ -107,58 +107,60 @@ class OrderController extends Controller
     }
 
     public function processPayment(Request $request)
-    {
-        $cart = session()->get('cart', []);
-        $userDetails = session()->get('user_details', []);
+{
+    $cart = session()->get('cart', []);
+    $userDetails = session()->get('user_details', []);
 
-        if (!$cart || !$userDetails) {
-            return redirect()->route('order.viewCart')->with('error', 'Keranjang atau detail pengguna tidak valid.');
-        }
+    if (!$cart || !$userDetails) {
+        return redirect()->route('order.viewCart')->with('error', 'Keranjang atau detail pengguna tidak valid.');
+    }
 
-        // Buat order baru
-        $order = new Order();
-        $order->user_name = $userDetails['name'];
-        $order->phone = $userDetails['phone'];
-        $order->address = $userDetails['address'];
-        $order->pickup_method = $userDetails['pickup_method'];
-        $order->total = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
-        $order->order_code = 'ORD-' . strtoupper(uniqid());
-        $order->save();
+    // Buat order baru
+    $order = new Order();
+    $order->user_name = $userDetails['name'];
+    $order->phone = $userDetails['phone'];
+    $order->address = $userDetails['address'];
+    $order->pickup_method = $userDetails['pickup_method'];
+    $order->total = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
+    $order->order_code = 'ORD-' . strtoupper(uniqid());
+    $order->status = 'Diterima'; // Set status menjadi "Diterima"
+    $order->save();
 
-        foreach ($cart as $item) {
-            // Buat hubungan produk ke dalam order
-            $order->products()->create([
-                'product_name' => $item['name'],
-                'price' => $item['price'],
-                'quantity' => $item['quantity'],
-                'note' => $item['note'],
-            ]);
+    foreach ($cart as $item) {
+        // Buat hubungan produk ke dalam order
+        $order->products()->create([
+            'product_name' => $item['name'],
+            'price' => $item['price'],
+            'quantity' => $item['quantity'],
+            'note' => $item['note'],
+        ]);
 
-            // Cari produk di database dan kurangi stoknya
-            $product = \App\Models\Product::find($item['id']);
-            if ($product) {
-                if ($product->stock >= $item['quantity']) {
-                    $product->stock -= $item['quantity'];
-                    $product->save();
-                } else {
-                    // Jika stok tidak mencukupi, batalkan pesanan
-                    return redirect()->route('order.viewCart')->with('error', "Stok produk {$product->name} tidak mencukupi.");
-                }
+        // Cari produk di database dan kurangi stoknya
+        $product = \App\Models\Product::find($item['id']);
+        if ($product) {
+            if ($product->stock >= $item['quantity']) {
+                $product->stock -= $item['quantity'];
+                $product->save();
+            } else {
+                // Jika stok tidak mencukupi, batalkan pesanan
+                return redirect()->route('order.viewCart')->with('error', "Stok produk {$product->name} tidak mencukupi.");
             }
         }
-
-        // Simpan bukti pembayaran jika ada
-        if ($request->hasFile('payment_proof')) {
-            $path = $request->file('payment_proof')->store('payments', 'public');
-            $order->payment_proof = $path;
-            $order->save();
-        }
-
-        // Bersihkan session
-        session()->forget(['cart', 'user_details']);
-
-        return redirect()->route('order.successPage')->with('order_code', $order->order_code);
     }
+
+    // Simpan bukti pembayaran jika ada
+    if ($request->hasFile('payment_proof')) {
+        $path = $request->file('payment_proof')->store('payments', 'public');
+        $order->payment_proof = $path;
+        $order->save();
+    }
+
+    // Bersihkan session
+    session()->forget(['cart', 'user_details']);
+
+    return redirect()->route('order.successPage')->with('order_code', $order->order_code);
+}
+
 
     public function successPage()
     {
@@ -174,43 +176,61 @@ class OrderController extends Controller
         // Redirect ke halaman tertentu, misalnya ke halaman utama
         return redirect('/shop')->with('message', 'Session berhasil dihapus.');
     }
-    public function updateOrderWithProducts(Request $request, $id)
-{
-    $order = Order::with('products')->findOrFail($id);
-
-    // Validasi data order
-    $request->validate([
-        'user_name' => 'required|string|max:255',
-        'email' => 'required|email',
-        'phone' => 'required|string|max:15',
-        'address' => 'required|string|max:255',
-        'pickup_method' => 'required|in:ambil_sendiri,diantar',
-        'total' => 'required|numeric|min:0',
-    ]);
-
-    // Update data order
-    $order->update([
-        'user_name' => $request->user_name,
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'address' => $request->address,
-        'pickup_method' => $request->pickup_method,
-        'total' => $request->total,
-    ]);
-
-    // Validasi dan update produk
-    foreach ($request->products as $productId => $productData) {
-        $product = $order->products()->findOrFail($productId);
-        $product->update([
-            'product_name' => $productData['product_name'],
-            'price' => $productData['price'],
-            'quantity' => $productData['quantity'],
-            'note' => $productData['note'] ?? null,
+    public function updateWithProducts(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'pickup_method' => 'required|string|in:ambil_sendiri,diantar',
+            'address' => 'required|string',
+            'status' => 'required|string|in:Diterima,Diproses,Selesai',
         ]);
+
+        // Cari order berdasarkan ID
+        $order = Order::findOrFail($id);
+
+        // Update data order
+        $order->update([
+            'pickup_method' => $request->pickup_method,
+            'address' => $request->address,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->back()
+            ->with('success', 'Order berhasil diperbarui.');
     }
 
-    return redirect()->route('admin.orders.index')->with('success', 'Order and products updated successfully.');
-}
+// public function updateWithProducts(Request $request, $id)
+// {
+//     // Validasi input
+//     $request->validate([
+//         'pickup_method' => 'required|string|in:ambil_sendiri,diantar',
+//         'address' => 'required|string',
+//     ]);
+
+//     // Cari order berdasarkan ID
+//     $order = Order::findOrFail($id);
+
+//     // Update data order, kecuali produk
+//     $order->update([
+//         'pickup_method' => $request->pickup_method,
+//         'address' => $request->address,
+//     ]);
+
+//     // // Periksa apakah ada file bukti pembayaran yang diunggah
+//     // if ($request->hasFile('payment_proof')) {
+//     //     $paymentProof = $request->file('payment_proof');
+//     //     $path = $paymentProof->store('payment_proofs', 'public');
+
+//     //     // Update path file bukti pembayaran
+//     //     $order->update(['payment_proof' => $path]);
+//     // }
+
+//     return redirect()
+//         ->back()
+//         ->with('success', 'Order berhasil diperbarui.');
+
+// }
 public function removeItem(Request $request)
 {
     $cart = session()->get('cart', []);

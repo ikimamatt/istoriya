@@ -52,7 +52,7 @@
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(assets/images/banner/slide-03.png);">
+				<div class="item-slick1" style="background-image: url(assets/images/banner/Group.png);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">

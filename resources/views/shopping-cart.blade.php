@@ -77,11 +77,11 @@
                             <br>
 
 						</div>
-                        <a href="{{ route('shop') }}" class="p-t-27">
+                        {{-- <a href="{{ route('shop') }}" class="p-t-27">
                             <button  class="flex-c-m btn btn-sm stext-101 cl0 size-116 bg1 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                                 kembali
                             </button>
-                        </a>
+                        </a> --}}
 
 					</div>
 				</div>
@@ -187,12 +187,13 @@
                                 Proses Pembayaran
                             </button>
                             <br>
-                            <a href="{{ route('session.clear') }}" class="p-t-27">
-                                <button  class="flex-c-m stext-101 cl0 size-116 bg1 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                                    kembali
-                                </button>
-                            </a>
+
                         </form>
+                        <a href="{{ route('shop') }}" class="p-t-27">
+                            <button  class="flex-c-m stext-101 cl0 size-116 bg1 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                kembali
+                            </button>
+                        </a>
                     </div>
                 </div>
 
