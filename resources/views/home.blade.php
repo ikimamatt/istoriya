@@ -261,13 +261,13 @@
                         </span>
 
                         <p class="stext-115 cl1 size-213 p-t-18">
-                            <a href="{{ $profiles->instagram }}">Instagram: @istoriya.cafe</a>
+                            <a href="{{ $profiles->instagram }}" target="_blank">Instagram: @istoriya.cafe</a>
                         </p>
                         <p class="stext-115 cl1 size-213 p-t-18">
-                            <a href="{{ $profiles->tiktok }}">tiktok: @istoriya.cafe</a>
+                            <a href="{{ $profiles->tiktok }}" target="_blank">tiktok: @istoriya.cafe</a>
                         </p>
                         <p class="stext-115 cl1 size-213 p-t-18">
-                            <a href="https://wa.me/{{ $profiles->whatsapp }}">whatsapp: @istoriya.cafe</a>
+                            <a href="https://wa.me/{{ $profiles->whatsapp }}" target="_blank">whatsapp: @istoriya.cafe</a>
                         </p>
 
                     </div>

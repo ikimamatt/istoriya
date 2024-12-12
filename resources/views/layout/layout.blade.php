@@ -60,6 +60,9 @@ img {
 .swal2-container {
     z-index: 9999 !important;
 }
+html {
+    scroll-behavior: smooth;
+}
 
 </style>
 </head>
@@ -169,41 +172,39 @@ img {
 						Kategori
 					</h4>
 
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Coffee
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Coffee Mocktail (+Soda)
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Fruit Tea Series
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Milk Based
-							</a>
-						</li>
+                    <ul>
                         <li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								The Signature
-							</a>
-						</li>
+                            <a href="#coffee" class="stext-107 cl7 hov-cl1 trans-04">
+                                Coffee
+                            </a>
+                        </li>
                         <li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Pastry Dessert
-							</a>
-						</li>
-					</ul>
+                            <a href="#coffee_mocktail" class="stext-107 cl7 hov-cl1 trans-04">
+                                Coffee Mocktail (+Soda)
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#fruit_tea" class="stext-107 cl7 hov-cl1 trans-04">
+                                Fruit Tea Series
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#milk_based" class="stext-107 cl7 hov-cl1 trans-04">
+                                Milk Based
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#signature" class="stext-107 cl7 hov-cl1 trans-04">
+                                The Signature
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#pastry_dessert" class="stext-107 cl7 hov-cl1 trans-04">
+                                Pastry Dessert
+                            </a>
+                        </li>
+                    </ul>
+
 				</div>
 
 				{{-- <div class="col-sm-6 col-lg-3 p-b-50">
